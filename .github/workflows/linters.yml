@@ -1,0 +1,40 @@
+name: Linters
+
+on:
+  pull_request:
+
+  push:
+    branches:
+      - main
+
+jobs:
+  rubocop:
+    name: Run Rubocop
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.0
+      - name: rubocop
+        uses: reviewdog/action-rubocop@v1
+        with:
+          rubocop_version: 1.12
+          rubocop_extensions: rubocop-performance:1.10 rubocop-rails:2.9 rubocop-rspec:2.2
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          rubocop_flags: "-c .rubocop.yml"
+  brakeman:
+    name: Run Brakeman
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - name: Run Brakeman
+        uses: reviewdog/action-brakeman@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review

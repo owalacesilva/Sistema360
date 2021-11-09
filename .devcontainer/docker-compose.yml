@@ -1,0 +1,73 @@
+
+version: '3.7'
+
+services:
+  app: &app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VARIANT: '2.7'
+        NODE_VERSION: 'lts/*'
+        PG_MAJOR: '12'
+        BUNDLER_VERSION: '2.1.4'
+    image: sistema360:1.0.0
+    tmpfs:
+      - /tmp
+
+  backend: &backend
+    <<: *app
+    stdin_open: true
+    tty: true
+    volumes:
+      - bundle:/usr/local/bundle
+      - ..:/workspace:cached
+      - ~/.ssh:/home/vscode/.ssh
+    environment:
+      - RAILS_ENV=development
+      - WEB_CONCURRENCY=1
+      - HISTFILE=./log/.bash_history
+      - EDITOR=vi
+    depends_on:
+      - phpmyadmin
+      - mailcatcher
+
+  runner:
+    <<: *backend
+    command: /bin/bash
+    ports:
+      - '3001:3000'
+      - '3003:3002'
+      - '7433:7433'
+
+  rails:
+    <<: *backend
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - '3005:3000'
+      - '9876:9876'
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    links: 
+      - db
+    depends_on: 
+      - db
+
+  db:
+    image: mariadb:10.3
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: 123456
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
+
+volumes:
+  bundle:

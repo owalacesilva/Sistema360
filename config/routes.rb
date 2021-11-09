@@ -6,14 +6,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
 
-  namespace :admins do
+  namespace :backoffice do
     get '', controller: :dashboard, action: :index, as: :dashboard
-    resources :auctions do
-      resources :auction_pictures, only: [:index, :show, :create, :destroy], path: 'pictures'
-    end
-    resources :clients
-    resources :settings do
-      post '', action: :update, on: :collection
-    end
+    resources :newsletters
+    resources :events
   end
 end

@@ -1,0 +1,39 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'tree' } do %>
+  <div class="container-fluid mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Diretos</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome de Usuário</th>
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Cidade/UF</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Desde</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.username %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.phone_number %></td>
+                <td><%= user.personal_number %></td>
+                <td><%= "#{user.city}/#{user.state}" %></td>
+                <td><%= user.status %></td>
+                <td><%= user.created_at.to_date.strftime('%d/%m/%Y') %></td>
+                <td><%= link_to 'Ações', root_path(user.id) %></td>
+              </tr>
+            <%- end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- end %>

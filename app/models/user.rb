@@ -12,6 +12,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
   
   belongs_to :sponsor, class_name: 'User', optional: true
+  has_many :sponsors, class_name: 'User', foreign_key: 'sponsor_id'
 
   validates :first_name, presence: true
   validates :email, uniqueness: true

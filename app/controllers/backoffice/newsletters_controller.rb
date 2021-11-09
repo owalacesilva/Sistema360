@@ -1,5 +1,4 @@
-class Backoffice::NewslettersController < ApplicationController
-  before_action :authenticate_user!
+class Backoffice::NewslettersController < Backoffice::BackofficeController
 
   def index
   end

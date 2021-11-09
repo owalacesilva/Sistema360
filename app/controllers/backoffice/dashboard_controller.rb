@@ -1,5 +1,4 @@
-class Backoffice::DashboardController < ApplicationController
-  before_action :authenticate_user!
+class Backoffice::DashboardController < Backoffice::BackofficeController
 
   def index
   end

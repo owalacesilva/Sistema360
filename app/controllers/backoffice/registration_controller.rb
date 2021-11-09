@@ -1,5 +1,4 @@
-class Backoffice::RegistrationController < ApplicationController
-  before_action :authenticate_user!
+class Backoffice::RegistrationController < Backoffice::BackofficeController
 
   def new
     @user = User.new

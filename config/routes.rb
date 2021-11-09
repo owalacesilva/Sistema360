@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     resources :events
     resources :registration
     resources :tickets
+    
+    namespace :tree do
+      resources :sponsored
+    end
   end
 end

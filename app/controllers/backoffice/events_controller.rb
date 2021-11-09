@@ -1,5 +1,4 @@
-class Backoffice::EventsController < ApplicationController
-  before_action :authenticate_user!
+class Backoffice::EventsController < Backoffice::BackofficeController
 
   def index
   end

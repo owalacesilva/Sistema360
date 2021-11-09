@@ -1,5 +1,4 @@
-class Backoffice::TicketsController < ApplicationController
-  before_action :authenticate_user!
+class Backoffice::TicketsController < Backoffice::BackofficeController
 
   def index
   end

@@ -1,0 +1,68 @@
+<ul class="menu-list">
+  <li>
+    <%= link_to backoffice_dashboard_path, class: "menu-link #{current_page == 'dashboard' ? 'active' : ''}" do %>
+      <%= fa_icon "home fw" %>
+      <span class="text">Dashboard</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to backoffice_newsletters_path, class: "menu-link #{current_page == 'newsletters' ? 'active' : ''}" do %>
+      <%= fa_icon "bullhorn fw" %>
+      <span class="text">Informativos</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to backoffice_events_path, class: "menu-link #{current_page == 'events' ? 'active' : ''}" do %>
+      <%= fa_icon "calendar fw" %>
+      <span class="text">Eventos</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to new_backoffice_registration_path, class: "menu-link #{current_page == 'registration' ? 'active' : ''}" do %>
+      <%= fa_icon "user-plus fw" %>
+      <span class="text">Cadastrar</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+      <%= fa_icon "shopping-cart fw" %>
+      <span class="text">Loja Virtual</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+      <%= fa_icon "sitemap fw" %>
+      <span class="text">Rede</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+      <%= fa_icon "money fw" %>
+      <span class="text">Financeiro</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+      <%= fa_icon "folder-o fw" %>
+      <span class="text">Relatórios</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+      <%= fa_icon "handshake-o fw" %>
+      <span class="text">Relacionamentos</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to '#', class: "menu-link #{current_page == 'documents' ? 'active' : ''}" do %>
+      <%= fa_icon "download fw" %>
+      <span class="text">Materiais</span>
+    <%- end %>
+  </li>
+  <li>
+    <%= link_to backoffice_tickets_path, class: "menu-link #{current_page == 'tickets' ? 'active' : ''}" do %>
+      <%= fa_icon "phone-square fw" %>
+      <span class="text">Suporte</span>
+    <%- end %>
+  </li>
+</ul>

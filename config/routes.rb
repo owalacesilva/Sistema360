@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get '', controller: :dashboard, action: :index, as: :dashboard
     resources :newsletters
     resources :events
+    resources :registration
+    resources :tickets
   end
 end

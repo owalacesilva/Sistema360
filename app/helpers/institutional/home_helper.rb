@@ -1,0 +1,2 @@
+module Institutional::HomeHelper
+end

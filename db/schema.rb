@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2021_11_09_023053) do
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blocked"
+    t.datetime "blocked_at"
+    t.boolean "verified"
+    t.datetime "verified_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "password", default: ""
@@ -61,31 +65,43 @@ ActiveRecord::Schema.define(version: 2021_11_09_023053) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.boolean "blocked"
-    t.datetime "blocked_at"
-    t.string "status", null: false
+    t.string "status", default: "actived", null: false
+    t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "person_type", limit: 2, default: "PF"
     t.string "rg_number"
     t.string "cpf_number"
     t.string "razao_social"
     t.string "cnpj_number"
-    t.string "gender"
+    t.string "gender", limit: 6, null: false
     t.date "birth_date"
     t.string "phone_number"
     t.string "personal_number"
     t.string "postal_code"
     t.string "street_address"
-    t.string "street_number"
+    t.string "building_number"
+    t.string "recipient"
+    t.string "apartament"
+    t.string "door_code"
+    t.string "floor"
     t.string "neighborhood"
     t.string "city"
     t.string "state"
+    t.string "state_abbr"
     t.string "country"
+    t.string "country_code"
+    t.string "latitude"
+    t.string "longitude"
+    t.bigint "sponsor_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["sponsor_id"], name: "index_users_on_sponsor_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "users", "users", column: "sponsor_id", on_update: :cascade
 end

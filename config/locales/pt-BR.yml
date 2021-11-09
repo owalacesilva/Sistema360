@@ -8,8 +8,14 @@ pt-BR:
       user: Usuário
     attributes:
       user:
+        sponsor: Patrocinador
+        username: Nome de Usuário
+        person_type: Tipo de Pessoa
         first_name: Nome
+        last_name: Sobrenome
         status: Situação
+        email: E-mail
+        email_confirmation: Digite novamente o e-mail
         cpf_number: CPF
         rg_number: RG
         cnpj_number: CNPJ
@@ -20,8 +26,9 @@ pt-BR:
         personal_number: Celular
         postal_code: CEP
         street_address: Endereço
-        street_number: Número
+        building_number: Número
         neighborhood: Bairro
+        recipient: Complemento
         city: Cidade
         state: Estado
         country: País
@@ -39,4 +46,6 @@ pt-BR:
             password:
               required: Nenhuma senha foi definido
               blank: Campo senha está em branco
+            email_confirmation:
+              confirmation: O email de confirmação é diferente
 

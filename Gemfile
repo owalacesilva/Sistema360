@@ -54,6 +54,8 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "solargraph", require: false
+  gem "factory_bot_rails", git: "https://github.com/thoughtbot/factory_bot_rails", branch: "master"
+  gem "faker",             git: "https://github.com/stympy/faker",                 branch: "master"
 end
 
 group :development do
@@ -92,8 +94,6 @@ group :test do
   gem "webmock"
   
   gem "database_cleaner-active_record"
-  gem "factory_bot_rails", git: "https://github.com/thoughtbot/factory_bot_rails", branch: "master"
-  gem "faker",             git: "https://github.com/stympy/faker",                 branch: "master"
   gem "rails-controller-testing"
 end
 

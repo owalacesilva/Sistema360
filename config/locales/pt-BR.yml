@@ -1,0 +1,42 @@
+pt-BR:
+  site_title: Sistema 360
+  errors:
+    messages:
+      not_saved: "Atenção! %{count} erros encontrados"
+  activerecord: 
+    models:
+      user: Usuário
+    attributes:
+      user:
+        first_name: Nome
+        status: Situação
+        cpf_number: CPF
+        rg_number: RG
+        cnpj_number: CNPJ
+        razao_social: Razão Social
+        gender: Sexo
+        birth_date: Data de Nascimento
+        phone_number: Telefone
+        personal_number: Celular
+        postal_code: CEP
+        street_address: Endereço
+        street_number: Número
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+        country: País
+        password: Senha
+        password_confirmation: Digite novamente a senha
+    errors:
+      messages:
+        record_invalid: "Erro ao salvar recurso: %{errors}"
+      models:
+        user:
+          attributes:
+            email:
+              required: Nenhuma senha foi definido
+              blank: Campo senha está em branco
+            password:
+              required: Nenhuma senha foi definido
+              blank: Campo senha está em branco
+

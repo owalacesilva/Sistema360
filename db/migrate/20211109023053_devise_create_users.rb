@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Custom fields
       t.boolean :blocked
       t.datetime :blocked_at
-      t.string :status,       null: false
+      t.string :status,       null: false, default: 'actived'
       t.string :first_name
       t.string :last_name
       t.string :rg_number,    null: true

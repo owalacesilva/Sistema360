@@ -1,0 +1,96 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'tree_team' } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "sitemap fw" %>
+      <span>Minha Equipe</span>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="card-title mb-3">
+          <%= fa_icon "filter fw" %><span>Filtro</span>
+        </h6>
+        <div class="row g-3">
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Ativo</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Ativo" aria-label="Ativo" />
+          </div>
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Nível</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Nível" aria-label="Nível" />
+          </div>
+          <div class="col-lg-2">
+            <label for="filter_actived" class="form-label">Pontuação Mín. Unilevel</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Pontuação Mín. Unilevel" aria-label="Pontuação Mín. Unilevel" />
+          </div>
+          <div class="col-lg-2">
+            <label for="filter_actived" class="form-label">Pontuação Mín. Graduação</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Pontuação Mín. Graduação" aria-label="Pontuação Mín. Graduação" />
+          </div>
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Mês</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Mês" aria-label="Mês" />
+          </div>
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Ano</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Ano" aria-label="Ano" />
+          </div>
+          <div class="col">
+            <label class="form-label">&nbsp;</label><br />
+            <button class="btn btn-primary">Filtrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <form>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Procurar</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" cname="name" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6 text-end">
+            <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Usuário</th>
+              <th scope="col">Patrocinador</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Cidade/UF</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Cadastro</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.sponsor.first_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.phone_number %></td>
+                <td><%= user.personal_number %></td>
+                <td><%= "#{user.city}/#{user.state}" %></td>
+                <td>
+                  <span class="badge rounded-pill bg-success">Ativo</span>
+                </td>
+                <td><%= user.created_at.to_date.strftime('%d/%m/%Y') %></td>
+                <td><%= link_to "Pedidos", "#", class: "btn btn-sm btn-dark" %></td>
+              </tr>
+            <%- end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- end %>

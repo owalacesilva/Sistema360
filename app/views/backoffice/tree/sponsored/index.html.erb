@@ -1,20 +1,42 @@
 <%= render layout: 'backoffice/shared/layout', locals: { page: 'tree' } do %>
-  <div class="container-fluid mt-3">
-    <div class="card">
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "calendar fw" %>
+      <span>Meus Diretos</span>
+    </div>
+    <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title mb-4">Diretos</h5>
-        <table class="table">
+        <div class="row">
+          <div class="col-lg-6">
+            <form>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Procurar</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" cname="name" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6 text-end">
+            <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Nome de Usuário</th>
+              <th scope="col">Usuário</th>
               <th scope="col">Nome</th>
               <th scope="col">E-mail</th>
               <th scope="col">Telefone</th>
               <th scope="col">Celular</th>
               <th scope="col">Cidade/UF</th>
               <th scope="col">Situação</th>
-              <th scope="col">Desde</th>
-              <th scope="col"></th>
+              <th scope="col">Cadastro</th>
+              <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -26,9 +48,11 @@
                 <td><%= user.phone_number %></td>
                 <td><%= user.personal_number %></td>
                 <td><%= "#{user.city}/#{user.state}" %></td>
-                <td><%= user.status %></td>
+                <td>
+                  <span class="badge rounded-pill bg-success">Ativo</span>
+                </td>
                 <td><%= user.created_at.to_date.strftime('%d/%m/%Y') %></td>
-                <td><%= link_to 'Ações', root_path(user.id) %></td>
+                <td><%= link_to "Pedidos", "#", class: "btn btn-sm btn-dark" %></td>
               </tr>
             <%- end %>
           </tbody>

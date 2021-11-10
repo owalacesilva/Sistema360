@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     
     namespace :tree do
       resources :sponsored
+      resources :team
     end
   end
 end

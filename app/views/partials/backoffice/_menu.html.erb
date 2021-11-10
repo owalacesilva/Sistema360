@@ -6,6 +6,12 @@
     <%- end %>
   </li>
   <li>
+    <%= link_to new_backoffice_registration_path, class: "menu-link #{current_page == 'registration' ? 'active' : ''}" do %>
+      <%= fa_icon "user-plus fw" %>
+      <span class="text">Cadastrar</span>
+    <%- end %>
+  </li>
+  <li>
     <%= link_to backoffice_newsletters_path, class: "menu-link #{current_page == 'newsletters' ? 'active' : ''}" do %>
       <%= fa_icon "bullhorn fw" %>
       <span class="text">Informativos</span>
@@ -15,12 +21,6 @@
     <%= link_to backoffice_events_path, class: "menu-link #{current_page == 'events' ? 'active' : ''}" do %>
       <%= fa_icon "calendar fw" %>
       <span class="text">Eventos</span>
-    <%- end %>
-  </li>
-  <li>
-    <%= link_to new_backoffice_registration_path, class: "menu-link #{current_page == 'registration' ? 'active' : ''}" do %>
-      <%= fa_icon "user-plus fw" %>
-      <span class="text">Cadastrar</span>
     <%- end %>
   </li>
   <li>
@@ -36,6 +36,12 @@
     <%- end %>
   </li>
   <li>
+    <%= link_to backoffice_tree_team_index_path, class: "menu-link #{current_page == 'tree_team' ? 'active' : ''}" do %>
+      <%= fa_icon "sitemap fw" %>
+      <span class="text">Equipe</span>
+    <%- end %>
+  </li>
+  <li>
     <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
       <%= fa_icon "money fw" %>
       <span class="text">Financeiro</span>
@@ -45,12 +51,6 @@
     <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
       <%= fa_icon "folder-o fw" %>
       <span class="text">Relatórios</span>
-    <%- end %>
-  </li>
-  <li>
-    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
-      <%= fa_icon "handshake-o fw" %>
-      <span class="text">Relacionamentos</span>
     <%- end %>
   </li>
   <li>

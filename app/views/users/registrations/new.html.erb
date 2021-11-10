@@ -40,161 +40,235 @@ body {
 }
 </style>
 <div class="form-signup">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Faça seu cadastro</h5>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="">Faça seu cadastro</h5>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= hidden_field :user, :sponsor_id %>
         <%= render "users/shared/error_messages", resource: resource %>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :first_name, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :email, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :cpf_number, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :cpf_number, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :rg_number, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :rg_number, class: "form-control" %>
+        <div class="card mb-4">
+          <div class="card-body">       
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <%= f.label :sponsor, class: "form-label" %>
+                <b class="text-danger">*</b>
+                <%= text_field nil, :sponsor_name, class: "form-control", required: true, readonly: true %>
+              </div>
+              <div class="col">
+                <label class="form-label">&nbsp;</label><br/>
+                <button type="submit" class="btn btn-primary mb-3">Alterar</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :cnpj_number, class: "form-label" %>
-              <%= f.text_field :cnpj_number, class: "form-control" %>
+        <div class="card mb-4">
+          <h6 class="card-header">
+            <%= fa_icon "user-circle fw" %> Dados Pessoais
+          </h6>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :first_name, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :first_name, autofocus: true, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :last_name, class: "form-label" %>
+                  <%= f.text_field :last_name, class: "form-control" %>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :razao_social, class: "form-label" %>
-              <%= f.text_field :razao_social, class: "form-control" %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :gender, class: "form-label" %>
+                  <% @gender_values = { 'male': 'Masculino', 'female': 'Feminino' } %>
+                  <%= f.select :gender, options_from_collection_for_select(@gender_values, :first, :last, '2'), { include_blank: false, prompt: 'Selecione um sexo' }, { class: "form-control" } %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :birth_date, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :birth_date, class: "form-control", required: true %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :gender, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :gender, class: "form-control" %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :person_type, class: "form-label" %>
+                  <% @person_type_values = { 'PF': 'Pessoa Física', 'PJ': 'Pessoa Jurídica' } %>
+                  <%= f.select :person_type, options_from_collection_for_select(@person_type_values, :first, :last, '2'), { include_blank: false, prompt: 'Selecione o tipo' }, { class: "form-control" } %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :rg_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :rg_number, class: "form-control" %>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :birth_date, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :birth_date, class: "form-control" %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :phone_number, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :phone_number, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :personal_number, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :personal_number, class: "form-control" %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <%= f.label :postal_code, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :postal_code, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="mb-3">
-              <%= f.label :street_address, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :street_address, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="mb-3">
-              <%= f.label :street_number, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :street_number, class: "form-control" %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <%= f.label :neighborhood, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :neighborhood, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <%= f.label :city, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :city, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <%= f.label :state, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :state, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <%= f.label :country, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.text_field :country, class: "form-control" %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :cpf_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :cpf_number, class: "form-control" %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :cnpj_number, class: "form-label" %>
+                  <%= f.text_field :cnpj_number, class: "form-control" %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :password, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <div class="card mb-4">
+          <h6 class="card-header">
+            <%= fa_icon "phone-square fw" %> Contato
+          </h6>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :phone_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :phone_number, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :personal_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :personal_number, class: "form-control" %>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <%= f.label :password_confirmation, class: "form-label" %>
-              <b class="text-danger">*</b>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :email, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.email_field :email, autocomplete: "email", class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :email_confirmation, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.email_field :email_confirmation, class: "form-control", required: true %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="mb-3">
-          <%= f.submit "Finalizar", class: "btn btn-primary" %>
+        <div class="card mb-4">
+          <h6 class="card-header">
+            <%= fa_icon "map-marker fw" %> Endereço
+          </h6>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="mb-3">
+                  <%= f.label :postal_code, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :postal_code, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="mb-3">
+                  <%= f.label :street_address, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :street_address, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="mb-3">
+                  <%= f.label :building_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :building_number, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :neighborhood, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :neighborhood, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :recipient, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :recipient, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="mb-3">
+                  <%= f.label :state, class: "form-label" %>
+                  <% @state_values = { 'SP': 'São Paulo', 'MG': 'Minas Gerais' } %>
+                  <%= f.select :state, options_from_collection_for_select(@state_values, :first, :last, '2'), { include_blank: false, prompt: 'Selecione o estado' }, { class: "form-control" } %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :city, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :city, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <h6 class="card-header">
+            <%= fa_icon "key fw" %> Dados de acesso
+          </h6>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :username, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :username, class: "form-control", required: true %>
+                  <small class="text-muted mb-0">O nome de usuário precisar conter no mínimo 6 caracteres (letras ou números)</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :password, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+                  <small class="text-muted mb-0">Sua senha precisa conter no mínimo 8 caracteres (letras e números e ao menos 1 letra maiúscula e 1 letra minúscula)</small>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <%= f.label :password_confirmation, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.submit "Finalizar cadastro", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

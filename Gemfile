@@ -11,6 +11,8 @@ gem 'mysql2'
 gem "puma", github: "puma/puma", branch: "master"
 # Use Bootstrap SCSS
 gem 'bootstrap', '~> 5.1.0'
+# Use PopperJs
+gem 'popper_js', '~> 2.9.3'
 # Use Jquery
 gem 'jquery-rails'
 # Use FontAwesome

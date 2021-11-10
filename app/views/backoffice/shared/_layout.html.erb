@@ -1,35 +1,65 @@
 <main class="admin-layout">
   <header class="admin-header">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default sticky-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <a href="/" class="d-flex text-decoration-none">
             <%= image_tag 'logo.jpg', style: 'max-height: 50px;padding: 5px 0px;' %>
           </a>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"/></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
+        <div class="d-flex flex-grow-1 flex-md-grow-0 justify-content-between justify-content-sm-end pl-2 pt-2 pt-md-0">
+          <div class="dropdown notifications">
+            <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Notificações">
+              <%= fa_icon "bell fw" %> <div class="badge badge-pill badge-danger d-none notification-count"></div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end notifications-dropdown shadow">
+              <div class="notifications-dropdown notification-area">
+                <a href="#" class="item dropdown-item text-center no-notification">
+                  <span class="d-inline-block">Não há notificações</span>
+                </a>
+              </div>
+              <div class="justify-content-around border-top py-2 see-all-notifications d-none">
+                <a href="/notificacoes/lista" class="d-block btn btn-link text-dark btn-sm"><strong>Ver todas</strong></a>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLinkIdiomas" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Alterar idioma">
+              <%= fa_icon "globe fw" %>
+              <span class="d-none d-md-inline">Português</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdownMenuLinkIdiomas">
+              <a class="dropdown-item  active" href="https://escritorio.chancellercosmeticos.com.br/linguagem/alterar/pt_BR/backoffice">Português</a>
+              <a class="dropdown-item " href="https://escritorio.chancellercosmeticos.com.br/linguagem/alterar/en_US/backoffice">English</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Menu">
+              <span class="d-none d-md-inline mr-1">Olá, <%= current_user.first_name %></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdownMenuLink">
+              <span class="dropdown-item">Olá, <%= current_user.first_name %></span>
+              <div class="dropdown-divider d-md-none"></div>
+              <a class="dropdown-item" href="/profile"><%= fa_icon "user fw" %> Perfil</a>
+              <a class="dropdown-item" href="/profile/documents"><%= fa_icon "file fw" %> Meus Documentos</a>
+              <a class="dropdown-item" href="/profile/bank"><%= fa_icon "university fw" %> Conta Bancária</a>
+              <a class="dropdown-item" href="/profile/terms"><%= fa_icon "book fw" %> Termos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/profile/password"><%= fa_icon "key fw" %> Alterar Senha</a>
+              <a class="dropdown-item" href="/profile/security"><%= fa_icon "key fw" %> Senha de Segurança</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout"><%= fa_icon "sign-out fw" %> Sair</a>
+              </div>
+            </div>
         </div>
       </div> 
     </nav>  
   </header>
   <div class="admin-container">
     <aside class="admin-sidebar">
-      <div class="head d-flex justify-content-center align-items-center">
+      <div class="head d-flex justify-content-center align-items-center py-3">
         <a href="/" class="d-flex text-decoration-none">
-          <%= image_tag 'logo.jpg', class: 'img-thumbnail', style: 'height: 70px;' %>
+          <%= image_tag 'logo-company.png', style: 'height: 100px;' %>
         </a>
       </div>
       <div class="menu">

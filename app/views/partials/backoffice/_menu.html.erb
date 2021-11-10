@@ -54,7 +54,7 @@
     <%- end %>
   </li>
   <li>
-    <%= link_to '#', class: "menu-link #{current_page == 'documents' ? 'active' : ''}" do %>
+    <%= link_to backoffice_supplies_path, class: "menu-link #{current_page == 'supplies' ? 'active' : ''}" do %>
       <%= fa_icon "download fw" %>
       <span class="text">Materiais</span>
     <%- end %>

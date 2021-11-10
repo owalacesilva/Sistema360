@@ -207,6 +207,7 @@ GEM
     kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
+    libv8 (3.16.14.19-x86_64-linux)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -295,6 +296,7 @@ GEM
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
       rainbow (>= 2.0, < 4.0)
+    ref (2.0.0)
     regexp_parser (2.1.1)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -412,6 +414,9 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -419,6 +424,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.1.0)
     vcr (6.0.0)
     warden (1.2.9)
@@ -502,8 +509,10 @@ DEPENDENCIES
   simplecov-json
   solargraph
   spring
+  therubyracer
   turbolinks (~> 5)
   tzinfo-data
+  uglifier
   vcr
   web-console (>= 4.1.0)
   webdrivers

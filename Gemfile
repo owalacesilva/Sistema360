@@ -9,8 +9,6 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'mysql2'
 # Use Puma as the app server
 gem "puma", github: "puma/puma", branch: "master"
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
 # Use Bootstrap SCSS
 gem 'bootstrap', '~> 5.1.0'
 # Use Jquery
@@ -95,6 +93,13 @@ group :test do
   
   gem "database_cleaner-active_record"
   gem "rails-controller-testing"
+end
+
+group :assets do
+  gem 'therubyracer'
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '>= 6'
+  gem 'uglifier'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

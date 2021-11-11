@@ -12,8 +12,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require setup
+ *= require lineicons
+ *= require animate
  *= require backoffice/layout
  *= require backoffice/dashboard
+ *= require institutional/home
  *= require_self
  */
 @import "variables";

@@ -54,9 +54,9 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "solargraph", require: false
-  gem "factory_bot_rails", git: "https://github.com/thoughtbot/factory_bot_rails", branch: "master"
-  gem "faker",             git: "https://github.com/stympy/faker",                 branch: "master"
 end
+gem "factory_bot_rails", git: "https://github.com/thoughtbot/factory_bot_rails", branch: "master"
+gem "faker",             git: "https://github.com/stympy/faker",                 branch: "master"
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

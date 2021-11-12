@@ -21,7 +21,28 @@
         </a>
       </div>
     </div>
-    <div class="generic-blocks mb-3">
+    <div id="carouselExampleControls" class="carousel slide mb-3" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag "home-banner.jpg", class: "d-block w-100", style: "max-height: 260px;", alt: "Banner Home" %>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "home-banner.jpg", class: "d-block w-100", style: "max-height: 260px;", alt: "Banner Home" %>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "home-banner.jpg", class: "d-block w-100", style: "max-height: 260px;", alt: "Banner Home" %>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="generic-blocks mb-5">
       <div class="items">
         <a href="#" title="Visualizar extrato detalhado" class="bg-gradient-3">
           <strong>R$ 0,00</strong> <%= fa_icon "chart-area fw" %> Ganhos até hoje
@@ -37,8 +58,56 @@
         </a>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body">
+    <div class="dashboard mb-5">
+      <div class="row">
+        <div class="col-lg-4">
+          <div id="qualificacao" class="card" style="min-height: 420px; border: 3px solid rgb(171, 146, 236);">
+            <div class="card-body text-center"><!----> <!----> 
+              <div>
+                <h2 class="mb-3 text-center">Qualificação</h2> 
+                <div class="text-center mb-2">
+                  <%= image_tag "graduation.png", width: "220", class: "rounded-circle img-fluid" %>
+                </div> 
+                <h4 class="mb-2">Empreendedor</h4> 
+                <div class="row">
+                  <div class="col-6">
+                    <strong>KIT</strong><br>Pré-Cadastro
+                  </div>
+                  <div class="col-6">
+                    <strong>Grad. Mensal</strong><br>Sem Graduação
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div id="qualificacao-mensal" class="card" style="min-height: 420px; border: 3px solid rgb(160, 212, 104);">
+            <div class="card-body text-center"><!----> <!----> 
+              <div class="atomic-wrap" style="">
+                <h2 class="mb-3 text-center">
+                  Graduação Mensal
+                  <a data-toggle="modal" href="#modalHelpGradMensal" class="text-secondary">
+                    <%= fa_icon "question-circle fw" %>
+                  </a>
+                </h2>
+                <div>
+                  <div class="text-center mb-3">
+                    <%= image_tag "graduation-points.png", class: "d-block", style: "margin: 0px auto;" %>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      ATUAL <br> <b id="monthPontosAtual" class="fs-3"> 0 </b> <br> <span id="monthGradAtual" class="fs-6"> EMPREENDEDOR </span>
+                    </div>
+                    <div class="col-lg-6">
+                      PRÓXIMA <br> <b id="monthPontosProxima" class="fs-3"> 1.500 </b> <br> <span id="monthGradProxima" class="fs-6"> ELITE </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

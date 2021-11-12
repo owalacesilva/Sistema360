@@ -42,7 +42,7 @@
     <%- end %>
   </li>
   <li class="menu-item mb-2">
-    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+    <%= link_to backoffice_financial_detailed_extract_index_path, class: "menu-link #{current_page == 'financial' ? 'active' : ''}" do %>
       <%= fa_icon "money fw" %>
       <span class="text">Financeiro</span>
     <%- end %>

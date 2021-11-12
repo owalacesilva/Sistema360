@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :backoffice do
-    get 'supplies/index'
-  end
   root 'institutional/home#index'
 
   devise_for :users, controllers: {
@@ -20,6 +17,10 @@ Rails.application.routes.draw do
     namespace :tree do
       resources :sponsored
       resources :team
+    end
+
+    namespace :financial do
+      resources :detailed_extract
     end
   end
 end

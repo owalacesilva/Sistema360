@@ -1,7 +1,9 @@
+require 'database_cleaner/active_record'
+
 RSpec.configure do |config|
   config.before(:suite) do
-    # DatabaseCleaner.clean_with(:deletion)
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:deletion)
+    # DatabaseCleaner.clean_with(:truncation)
     # This loading seed before each suite
     load Rails.root.join("db/seeds.rb")
   end

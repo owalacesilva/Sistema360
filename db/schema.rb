@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_023053) do
+ActiveRecord::Schema.define(version: 2021_11_12_220220) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -40,12 +40,102 @@ ActiveRecord::Schema.define(version: 2021_11_09_023053) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "graduations", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.decimal "volume", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
+  end
+
+  create_table "point_distributions", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "reference_id", null: false
+    t.boolean "done"
+    t.decimal "base_value", precision: 10, scale: 2
+    t.string "params"
+    t.index ["reference_id"], name: "index_point_distributions_on_reference_id"
+    t.index ["user_id"], name: "index_point_distributions_on_user_id"
+  end
+
+  create_table "qualifications", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.decimal "volume", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
+  end
+
+  create_table "references", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+  end
+
+  create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.string "bank_code"
+    t.string "bank_name"
+    t.string "account_type"
+    t.string "branch_number"
+    t.string "branch_code"
+    t.string "account_number"
+    t.string "account_code"
+    t.string "holder_name"
+    t.string "document_number"
+    t.string "operation"
+    t.index ["user_id"], name: "index_user_bank_accounts_on_user_id"
+  end
+
+  create_table "user_graduations", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "graduation_id", null: false
+    t.index ["graduation_id"], name: "index_user_graduations_on_graduation_id"
+    t.index ["user_id"], name: "index_user_graduations_on_user_id"
+  end
+
+  create_table "user_point_records", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "reference_id", null: false
+    t.date "record_date"
+    t.decimal "amount", precision: 10, scale: 2
+    t.index ["reference_id"], name: "index_user_point_records_on_reference_id"
+    t.index ["user_id"], name: "index_user_point_records_on_user_id"
+  end
+
+  create_table "user_points", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "reference_id", null: false
+    t.decimal "amount", precision: 10, scale: 2
+    t.index ["reference_id"], name: "index_user_points_on_reference_id"
+    t.index ["user_id"], name: "index_user_points_on_user_id"
+  end
+
+  create_table "user_qualifications", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "qualification_id", null: false
+    t.index ["qualification_id"], name: "index_user_qualifications_on_qualification_id"
+    t.index ["user_id"], name: "index_user_qualifications_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "blocked"
+    t.boolean "blocked", default: false
     t.datetime "blocked_at"
-    t.boolean "verified"
+    t.boolean "verified", default: false
     t.datetime "verified_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -103,5 +193,16 @@ ActiveRecord::Schema.define(version: 2021_11_09_023053) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "point_distributions", "references", on_update: :cascade
+  add_foreign_key "point_distributions", "users", on_update: :cascade
+  add_foreign_key "user_bank_accounts", "users", on_update: :cascade
+  add_foreign_key "user_graduations", "graduations", on_update: :cascade
+  add_foreign_key "user_graduations", "users", on_update: :cascade
+  add_foreign_key "user_point_records", "references", on_update: :cascade
+  add_foreign_key "user_point_records", "users", on_update: :cascade
+  add_foreign_key "user_points", "references", on_update: :cascade
+  add_foreign_key "user_points", "users", on_update: :cascade
+  add_foreign_key "user_qualifications", "qualifications", on_update: :cascade
+  add_foreign_key "user_qualifications", "users", on_update: :cascade
   add_foreign_key "users", "users", column: "sponsor_id", on_update: :cascade
 end

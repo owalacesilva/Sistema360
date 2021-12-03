@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_220220) do
+ActiveRecord::Schema.define(version: 2021_12_01_040054) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,32 @@ ActiveRecord::Schema.define(version: 2021_11_12_220220) do
     t.string "params"
     t.index ["reference_id"], name: "index_point_distributions_on_reference_id"
     t.index ["user_id"], name: "index_point_distributions_on_user_id"
+  end
+
+  create_table "products", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blocked", default: false, null: false
+    t.date "blocked_at"
+    t.boolean "published", default: false, null: false
+    t.date "published_at"
+    t.string "permalink", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "short_description"
+    t.text "keywords"
+    t.string "product_type", null: false
+    t.decimal "price", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "discount_price", precision: 10, scale: 2, default: "0.0"
+    t.integer "stock_quantity", default: 0
+    t.boolean "featured", default: false
+    t.boolean "sold_out", default: false
+    t.decimal "width", precision: 10, scale: 2, default: "0.0"
+    t.decimal "height", precision: 10, scale: 2, default: "0.0"
+    t.decimal "length", precision: 10, scale: 2, default: "0.0"
+    t.decimal "weigth", precision: 10, scale: 2, default: "0.0"
+    t.decimal "point_amount", precision: 10, scale: 2, default: "0.0"
+    t.index ["permalink"], name: "index_products_on_permalink"
   end
 
   create_table "qualifications", charset: "utf8mb4", force: :cascade do |t|

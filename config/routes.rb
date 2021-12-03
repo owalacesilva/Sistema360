@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     namespace :store do
       resources :products, only: [:index, :show]
+      get "shipping", controller: :shipping, action: :index, as: :shipping
     end
   end
 end

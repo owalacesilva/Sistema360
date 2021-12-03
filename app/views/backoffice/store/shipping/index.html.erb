@@ -1,0 +1,47 @@
+<%= render layout: "backoffice/shared/layout", locals: { page: "store" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "shopping-cart fw" %>
+      <span>Forma de Envio</span>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-4 mb-5">
+          <div class="card">
+            <div class="card-body text-center">
+              <%= fa_icon "university fw 2x" %>
+              <h5 class="card-title fs-2">Retirar na matriz</h5>
+              <p class="card-text">Retire o seu pedido na matriz</p>
+              <div class="card text-start mb-3">
+                <div class="card-body">    
+                  <strong>Endereço da Matriz</strong> <br>
+                  <i class="fas fa-fw fa-map-marker-alt text-danger"></i> Rua Joaquim Miranda, Vila Augusta, GUARULHOS / SP <br>
+                  CEP: 07023-051<br><br><%= fa_icon "phone fw" %> (11) 91099-3663/(11) 91099-3663<br>                                                    
+                  <%= fa_icon "envelope fw" %> <a href="mailto:chancellerprofissional@outlook.com.br" class="text-dark" style="text-decoration: underline">chancellerprofissional@outlook.com.br</a>
+                </div>
+              </div>
+              <div class="d-grid gap-2">
+                <%= link_to "Selecionar", backoffice_store_shipping_path, class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mb-5">
+          <div class="card">
+            <div class="card-body text-center">
+              <%= fa_icon "shopping-cart fw 2x" %>
+              <h5 class="card-title fs-2">Receber em casa</h5>
+              <p class="card-text">Escolha uma opção de frete para receber os seus produtos.</p>
+              <div class="shadow-none alert alert-info text-start">
+                <p>Seu pedido estará reservado por até <strong>6 dias corridos</strong>. Pedidos sem confirmação de pagamento neste prazo, serão <strong>cancelados</strong> automaticamente.</p>
+              </div>
+              <div class="d-grid gap-2">
+                <%= link_to "Selecionar", backoffice_store_shipping_path, class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- end %>

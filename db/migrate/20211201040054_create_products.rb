@@ -31,6 +31,9 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       
       # Product's business plan
       t.decimal  :point_amount, :precision => 10, :scale => 2, default: 0
+
+      # References
+      t.references :category, null: false, foreign_key: { to_table: :product_categories, on_delete: :restrict, on_update: :cascade }
     end
   end
 

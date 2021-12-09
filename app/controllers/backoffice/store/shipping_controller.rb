@@ -1,4 +1,4 @@
-class Backoffice::Store::ShippingController < ApplicationController
+class Backoffice::Store::ShippingController < Backoffice::BackofficeController
   def index
   end
 end

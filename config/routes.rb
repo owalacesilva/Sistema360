@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     namespace :store do
       resources :products, only: [:index, :show]
       get "shipping", controller: :shipping, action: :index, as: :shipping
+      get "cart", controller: :cart, action: :index, as: :cart
+      get "confirmation", controller: :confirmation, action: :index, as: :confirmation
+      get "checkout", controller: :checkout, action: :index, as: :checkout
     end
   end
 end

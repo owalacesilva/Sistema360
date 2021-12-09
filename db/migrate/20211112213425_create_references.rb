@@ -5,7 +5,7 @@ class CreateReferences < ActiveRecord::Migration[6.1]
       t.timestamps null: false
 
       # Custom fields
-      t.string :title
+      t.string :title, null: false
     end
   end
 

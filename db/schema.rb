@@ -127,11 +127,13 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
   create_table "point_distributions", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.bigint "reference_id", null: false
-    t.boolean "done"
+    t.boolean "done", default: false
     t.decimal "base_value", precision: 10, scale: 2
     t.string "params"
+    t.bigint "user_id"
+    t.bigint "reference_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_point_distributions_on_order_id"
     t.index ["reference_id"], name: "index_point_distributions_on_reference_id"
     t.index ["user_id"], name: "index_point_distributions_on_user_id"
   end
@@ -185,7 +187,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
   create_table "references", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
+    t.string "title", null: false
   end
 
   create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
@@ -305,15 +307,15 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "order_items", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "order_items", "products", on_update: :cascade
   add_foreign_key "orders", "addresses", column: "billing_address_id", on_update: :cascade
   add_foreign_key "orders", "addresses", column: "shipping_address_id", on_update: :cascade
   add_foreign_key "orders", "users", on_update: :cascade
-  add_foreign_key "point_distributions", "references", on_update: :cascade
-  add_foreign_key "point_distributions", "users", on_update: :cascade
+  add_foreign_key "point_distributions", "orders"
+  add_foreign_key "point_distributions", "references"
+  add_foreign_key "point_distributions", "users"
   add_foreign_key "products", "product_categories", column: "category_id", on_update: :cascade
   add_foreign_key "user_bank_accounts", "users", on_update: :cascade
   add_foreign_key "user_graduations", "graduations", on_update: :cascade

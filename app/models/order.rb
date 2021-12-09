@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :billing_address, class_name: "Address", validate: true, optional: false
   belongs_to :shipping_address, class_name: "Address", validate: true, optional: true
 
+  has_many :items, class_name: "OrderItem", autosave: true, dependent: :destroy
+
   validates :number, presence: true
   validates :reference_date, presence: true
   validates :status, presence: true

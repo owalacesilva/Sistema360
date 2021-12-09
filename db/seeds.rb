@@ -57,15 +57,39 @@ root = User.new(root_attr)
 root.save!
 
 def create_subnetwork(sponsor)
-  childrens = Random.rand(10...20)
-  childrens.times do
-    attrs = FactoryBot.attributes_for(:user, :actived, :verified, sponsor: sponsor)
-    User.create!(attrs)
+  Random.rand(1...5).times do
+    user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, sponsor: sponsor))
+    user.save
+    create_order(user)
   end
 end
 
+def add_points_to_user(order)
+  point_dist = PointDistribution.new(done: false, params: nil, order: order)
+  point_dist.user = order.user
+  point_dist.reference = FactoryBot.create(:reference)
+  point_dist.base_value = order.total
+  point_dist.save!
+end
+
+def add_order_items_and_save_order(order, product)
+  order_item = OrderItem.new(FactoryBot.attributes_for(:order_item))
+  order_item.product = product
+  order.items << order_item
+  order.save
+  add_points_to_user(order)
+end
+
+def create_order(user)
+  order = Order.new(FactoryBot.attributes_for(:order, status: "paid"))
+  order.user = user
+  order.billing_address = FactoryBot.build(:address, building_number: 100)
+  order.shipping_address = FactoryBot.build(:address, building_number: 200)
+  add_order_items_and_save_order(order, Product.first)
+end
+
 # Childrens from root
-childrens = Random.rand(5...15)
+childrens = Random.rand(10...20)
 childrens.times do
   attrs = FactoryBot.attributes_for(:user, :actived, :verified, sponsor: root)
   sponsored = User.new(attrs)

@@ -29,9 +29,12 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.references :billing_address, null: false, foreign_key: { to_table: :addresses, on_delete: :restrict, on_update: :cascade }
       t.references :shipping_address, null: false, foreign_key: { to_table: :addresses, on_delete: :restrict, on_update: :cascade }
     end
+    
+    add_reference :point_distributions, :order, index: true, foreign_key: true
   end
 
   def down
+    remove_reference :point_distributions, :order, index: true, foreign_key: true
     drop_table :orders, if_exists: true
   end
 end

@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :product do
     title { Faker::Commerce.product_name }
     permalink { Faker::Internet.url(host: "localhost") }
-    description { Faker::Lorem.paragraphs(sentence_count: 10) }
-    short_description { Faker::Lorem.paragraphs(sentence_count: 3) }
+    description { Faker::Lorem.paragraph(sentence_count: 10, supplemental: true) }
+    short_description { Faker::Lorem.paragraph(sentence_count: 2) }
     keywords { Faker::Lorem.words(number: 10) }
     product_type { "goods" }
     price { Faker::Commerce.price(range: 1.0..1000.0, as_string: false) }

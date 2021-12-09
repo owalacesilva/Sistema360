@@ -1,0 +1,113 @@
+<%= render layout: "backoffice/shared/layout", locals: { page: "store" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "shopping-cart fw" %>
+      <span>Loja Virtual</span>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+          <h4>Mais vendidos</h4>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-header">
+              Categorias
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Barbearia</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Capilar</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Cosmêticos</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Magnéticos</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Tourneira Gourmet</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Perfumaria</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Purificador de Água</span>
+                <%- end %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to root_path do %>
+                  <%= fa_icon "minus fw" %>
+                  <span>Óleos Essenciais</span>
+                <%- end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <% @products.each do |product| %>
+              <% presenter(product) do |_presenter| %>
+                <div class="col-lg-4 mb-5">
+                  <div class="card">
+                    <%= image_tag "kit-product", class: "card-img-top", alt: "" %>
+                    <div class="card-body text-center">
+                      <h5 class="card-title"><%= product.title -%></h5>
+                      <p class="card-text fs-4"><%= _presenter.price_formatted -%></p>
+                      <h6 class="card-subtitle mt-2 text-muted">
+                        <%= link_to backoffice_store_shipping_path, class: "card-link" do %>
+                          <%= fa_icon "eye fw" %> <span>Visualizar produto</span>
+                        <%- end %>                      
+                      </h6>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Pontos Graduação:</strong> <%= _presenter.point_amount_formatted -%></li>
+                      <li class="list-group-item"><strong>Pontos Unilevel:</strong> <%= _presenter.point_amount_formatted -%></li>
+                    </ul>
+                    <div class="card-body">
+                      <div class="d-grid gap-2 mb-3">
+                        <%= link_to "Adicionar ao carrinho", backoffice_store_shipping_path, class: "btn btn-success" %>
+                      </div>
+                      <div class="text-center">
+                        <%= link_to backoffice_store_shipping_path, class: "card-link" do %>
+                          <%= fa_icon "share fw" %> <span>Compartilhar esse produto</span>
+                        <%- end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <%- end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- end %>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Qualification, type: :model do
   
-  describe "is not created" do
+  context "when qualification is builded" do
     context "without title" do
       subject(:qualification) { build(:qualification, title: nil) }
 

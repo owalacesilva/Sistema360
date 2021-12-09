@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   
-  describe "is not created" do
+  describe "when user is builded" do
     let(:sponsor) { create(:user, :actived) }
 
     context "without first_name" do

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserQualification, type: :model do
   
-  describe "is not created" do
+  context "when use qualification is builded" do
     context "without user" do
       subject(:user_qualification) { build(:user_qualification, user: nil) }
 

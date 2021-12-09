@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserGraduation, type: :model do
   
-  describe "is not created" do
+  context "when use graduation is builded" do
     context "without user" do
       subject(:user_graduation) { build(:user_graduation, user: nil) }
 

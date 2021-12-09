@@ -1,5 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Address, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  context "when address is builded" do
+    context "with valid attributes" do
+      subject(:address) { build(:address) }
+
+      it { is_expected.to be_valid }
+    end
+  end
 end

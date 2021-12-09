@@ -116,13 +116,12 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false
     t.date "blocked_at"
-    t.string "type", null: false
     t.string "name", null: false
+    t.string "display_name", null: false
     t.text "description"
-    t.string "display_name"
     t.text "preferences"
     t.string "preferences_source"
-    t.integer "position", default: 0
+    t.integer "position", default: 0, null: false
   end
 
   create_table "point_distributions", charset: "utf8mb4", force: :cascade do |t|
@@ -141,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.string "display_name", null: false
     t.string "description"
     t.boolean "is_default", default: false
     t.string "tax_code"

@@ -6,6 +6,7 @@ class CreateProductCategories < ActiveRecord::Migration[6.1]
 
       # Product Category's details
       t.string :name, null: false
+      t.string :display_name, null: false
       t.string :description
       t.boolean :is_default, default: false
       t.string :tax_code

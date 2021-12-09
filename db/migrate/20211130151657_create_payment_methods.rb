@@ -9,13 +9,12 @@ class CreatePaymentMethods < ActiveRecord::Migration[6.1]
       t.date :blocked_at
 
       # Payment Method's details
-      t.string :type, null: false
       t.string :name, null: false
+      t.string :display_name, null: false
       t.text :description
-      t.string :display_name
       t.text :preferences
       t.string :preferences_source
-      t.integer :position, default: 0
+      t.integer :position, default: 0, null: false
     end
   end
 

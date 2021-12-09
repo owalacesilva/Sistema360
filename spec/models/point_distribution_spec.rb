@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PointDistribution, type: :model do
   
-  describe "is not created" do
+  context "when point distribution is builded" do
     context "without base_value" do
       subject(:point_distribution) { build(:point_distribution, base_value: nil) }
 

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserBankAccount, type: :model do
   
-  describe "is not created" do
+  context "when user bank account is builded" do
     context "without user" do
       subject(:user_bank_account) { build(:user_bank_account, user: nil) }
 

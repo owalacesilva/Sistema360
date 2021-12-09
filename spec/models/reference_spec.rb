@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Reference, type: :model do
   
-  describe "is not created" do
+  context "when reference is builded" do
     context "without title" do
       subject(:reference) { build(:reference, title: nil) }
 

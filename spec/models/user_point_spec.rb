@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserPoint, type: :model do
   
-  describe "is not created" do
+  context "when user point is builded" do
     context "without user" do
       subject(:user_point_record) { build(:user_point_record, user: nil) }
 

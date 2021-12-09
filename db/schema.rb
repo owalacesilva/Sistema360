@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_040054) do
+ActiveRecord::Schema.define(version: 2021_12_03_145505) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,31 @@ ActiveRecord::Schema.define(version: 2021_12_01_040054) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "alternative_phone_number"
+    t.string "company_name"
+    t.string "postal_code"
+    t.string "street_address"
+    t.string "building_number"
+    t.string "recipient"
+    t.string "apartament"
+    t.string "door_code"
+    t.string "floor"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "state_abbr"
+    t.string "country"
+    t.string "country_code"
+    t.string "latitude"
+    t.string "longitude"
+  end
+
   create_table "graduations", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -48,16 +73,79 @@ ActiveRecord::Schema.define(version: 2021_12_01_040054) do
     t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
   end
 
+  create_table "order_items", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity", null: false
+    t.decimal "price", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "cost_price", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blocked", default: false, null: false
+    t.date "blocked_at"
+    t.boolean "completed", default: false, null: false
+    t.date "completed_at"
+    t.boolean "canceled", default: false, null: false
+    t.date "canceled_at"
+    t.string "number", limit: 32, null: false
+    t.date "reference_date", null: false
+    t.string "status", null: false
+    t.decimal "item_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "shipment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "payment_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "discount_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
+    t.bigint "user_id", null: false
+    t.bigint "billing_address_id", null: false
+    t.bigint "shipping_address_id", null: false
+    t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payment_methods", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blocked", default: false, null: false
+    t.date "blocked_at"
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.text "description"
+    t.text "preferences"
+    t.string "preferences_source"
+    t.integer "position", default: 0, null: false
+  end
+
   create_table "point_distributions", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.bigint "reference_id", null: false
-    t.boolean "done"
+    t.boolean "done", default: false
     t.decimal "base_value", precision: 10, scale: 2
     t.string "params"
+    t.bigint "user_id"
+    t.bigint "reference_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_point_distributions_on_order_id"
     t.index ["reference_id"], name: "index_point_distributions_on_reference_id"
     t.index ["user_id"], name: "index_point_distributions_on_user_id"
+  end
+
+  create_table "product_categories", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.string "description"
+    t.boolean "is_default", default: false
+    t.string "tax_code"
   end
 
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
@@ -83,6 +171,8 @@ ActiveRecord::Schema.define(version: 2021_12_01_040054) do
     t.decimal "length", precision: 10, scale: 2, default: "0.0"
     t.decimal "weigth", precision: 10, scale: 2, default: "0.0"
     t.decimal "point_amount", precision: 10, scale: 2, default: "0.0"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["permalink"], name: "index_products_on_permalink"
   end
 
@@ -97,7 +187,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_040054) do
   create_table "references", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
+    t.string "title", null: false
   end
 
   create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
@@ -217,10 +307,16 @@ ActiveRecord::Schema.define(version: 2021_12_01_040054) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "point_distributions", "references", on_update: :cascade
-  add_foreign_key "point_distributions", "users", on_update: :cascade
+  add_foreign_key "order_items", "orders", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "order_items", "products", on_update: :cascade
+  add_foreign_key "orders", "addresses", column: "billing_address_id", on_update: :cascade
+  add_foreign_key "orders", "addresses", column: "shipping_address_id", on_update: :cascade
+  add_foreign_key "orders", "users", on_update: :cascade
+  add_foreign_key "point_distributions", "orders"
+  add_foreign_key "point_distributions", "references"
+  add_foreign_key "point_distributions", "users"
+  add_foreign_key "products", "product_categories", column: "category_id", on_update: :cascade
   add_foreign_key "user_bank_accounts", "users", on_update: :cascade
   add_foreign_key "user_graduations", "graduations", on_update: :cascade
   add_foreign_key "user_graduations", "users", on_update: :cascade

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Graduation, type: :model do
   
-  describe "is not created" do
+  context "when graduation is builded" do
     context "without title" do
       subject(:graduation) { build(:graduation, title: nil) }
 

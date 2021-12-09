@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  belongs_to :category, class_name: "ProductCategory", validate: true, optional: false
 
   validates :permalink, presence: true
   validates :title, presence: true

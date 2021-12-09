@@ -1,0 +1,27 @@
+<%= render layout: "backoffice/shared/layout", locals: { page: "store" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "shopping-cart fw" %>
+      <span>Loja Virtual</span>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <% (1..10).each do |item| %>
+          <div class="col-3 mb-5">
+            <div class="card">
+              <%= image_tag "kit-product", class: "card-img-top", alt: "" %>
+              <div class="card-body text-center">
+                <h5 class="card-title">Kit Perfume</h5>
+                <p class="card-text">Pré-cadastro para Start</p>
+                <p class="card-text fs-4">R$ 320,00</p>
+                <div class="d-grid gap-2">
+                  <%= link_to "Comprar", backoffice_store_shipping_path, class: "btn btn-success" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<%- end %>

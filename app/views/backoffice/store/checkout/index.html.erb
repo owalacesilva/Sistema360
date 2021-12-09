@@ -1,0 +1,100 @@
+<%= render layout: "backoffice/shared/layout", locals: { page: "store" } do %>
+<div id="page-dashboard" class="container-fluid mt-3">
+  <div class="page-header">
+    <%= fa_icon "money fw" %>
+    <span>Pagamento do Pedido</span>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="w-100 text-center py-3">
+          <h2 class="font-weight-bold m-0">Pedido #1605</h2>
+        </div>
+        <div class="pb-3 py-md-0">
+          <div class="card shadow-sm mb-3" style="overflow:hidden">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th width="350">Produto</th>
+                    <th class="text-right">Unidade</th>
+                    <th class="text-right">Qtd.</th>
+                    <th class="text-right">Subtotal</th>
+                    /tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      PRÉ-CADASTRO PARA KIT MANDIOCA <br>
+                      <div><i class="fas fa-fw fa-level-up-alt fa-rotate-90"></i> KIT MANDIOCA ADESÃO</div>
+                    </td>
+                    <td class="text-right">R$ 160,00</td>
+                    <td class="text-right">1</td>
+                    <td class="text-right">R$ 160,00 </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-sm-between mb-3" style="font-size:18px">
+            <div class="card shadow-sm text-center py-2 px-5 mb-3">
+              <strong>Subtotal</strong>
+              <span>R$ 160,00</span>
+            </div>
+            <div class="card shadow-sm text-center py-2 px-5 mb-3">
+              <strong>Frete</strong>
+              <span>--</span>
+            </div>
+            <div class="card shadow-sm text-center py-2 px-5 mb-3">
+              <strong>Total</strong>
+              <span>R$ 160,00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-100 my-4">
+        <h5 class="font-weight-bold text-center">Selecione uma forma de pagamento</h5>
+        <div id="payments" class="d-flex flex-wrap justify-content-center p-3">
+          <a href="" data-payment="1" class="item mx-3 text-center ">
+            <div class="checked"><%= fa_icon "money fw" %></div>
+            <i class="fal fa-fw fa-usd-square payIcon"></i>
+            <div>Transferência Bancária</div>
+          </a>
+          <a href="" data-payment="2" class="item mx-3 text-center active">
+            <div class="checked"><%= fa_icon "money fw" %></div>
+            <i class="fal fa-fw fa-inventory payIcon"></i>
+            <div>Pagamento no CD</div>
+          </a>
+          <a href="" data-payment="3" class="item mx-3 text-center ">
+            <div class="checked"><%= fa_icon "money fw" %></div>
+            <img src="https://escritorio.chancellercosmeticos.com.br/public/img/icon-pagseguro.png" alt="">
+          </a>
+          <a href="" data-payment="5" class="item mx-3 text-center ">
+            <div class="checked"><%= fa_icon "money fw" %></div>
+            <i class="fal fa-fw fa-receipt payIcon"></i>
+            <div>Deposito Bancário</div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4" id="payment">
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <p class="text-center">Endereço de entrega</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between px-2"><b>Endereço</b> Rua Joaquim Miranda, 252</li>
+              <li class="list-group-item d-flex justify-content-between px-2"><b>Complemento</b> casa</li>
+              <li class="list-group-item d-flex justify-content-between px-2"><b>Bairro</b> Vila Augusta</li>
+              <li class="list-group-item d-flex justify-content-between px-2"><b>Cidade</b> GUARULHOS / SP</li>
+              <li class="list-group-item d-flex justify-content-between px-2"><b>CEP</b> 07023-051</li>
+              <li class="list-group-item d-flex justify-content-between px-2"><b>Contato</b> (11) 91099-3663 / (11) 91099-3663</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center">
+          <a class="btn btn-info" id="finalizar" href="#" data-url="" data-slug="cd">Finalizar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- end %>

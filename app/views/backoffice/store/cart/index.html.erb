@@ -1,0 +1,118 @@
+<%= render layout: "backoffice/shared/layout", locals: { page: "store" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "shopping-cart fw" %>
+      <span>Meu Carrinho</span>
+    </div>
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap justify-content-between">
+        <%= link_to "Escolher mais produtos", backoffice_store_products_path, class: "btn btn-outline-secondary mb-2" %>
+        <%= link_to "Continuar", backoffice_store_confirmation_path, class: "btn btn-success mb-2" %>
+      </div>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            <div class="d-none d-lg-block">
+                <div class="row mb-4 text-secondary">
+                    <div class="col-sm-6"><strong class="d-block text-truncate">Item (s)</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Preço (un.)</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Quantidade</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Subtotal</strong></div>
+                </div>
+            </div>
+                            <div class="row mb-3 pb-3 ">
+                    <div class="col-12 col-md-6 d-flex">
+                        <div class="mr-3 d-none d-md-block">
+                                                        <%= image_tag "kit-product", class: "rounded shadow-sm border", width: "75", height: "75", alt: "Pré-cadastro para Kit Mandioca", title: "Pré-cadastro para Kit Mandioca" %>
+                        </div>
+                        <div>
+                            <strong>Pré-cadastro para Kit Mandioca</strong>                             <div class="text-secondary" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Pontuação do produto">
+                                <small>
+            <%= fa_icon "product-hunt fw" %>
+                                                                                            
+                                        <strong>Graduação </strong>135,00 pts |
+                                                                                                                        <strong>Unilevel </strong>135,00 pts
+                                    
+                                                                    </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-2 order-1 order-md-1">
+                        <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Preço</strong></div>
+                        R$ 160,00                    </div>
+                    <div class="col-12 col-md-2 order-3 order-md-2">
+                        <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Quantidade</strong></div>
+                        <form method="POST" action="" data-dashlane-rid="1e005f5c1b75139b" data-form-type="other">
+                            <div class="form-row">
+                                                                    <div class="col-6 pr-0">
+                                        <input type="number" name="qtd" class="form-control form-control-sm" value="1" min="0" readonly="" data-dashlane-rid="8cb7a6999ca70f46" data-form-type="other">
+                                    </div>
+                                                            </div>
+                        </form>
+                                            </div>
+                    <div class="col-6 col-md-2 order-2 order-md-3">
+                        <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Subtotal</strong></div>
+                        R$ 160,00                    </div>
+                </div>
+            
+            <div class="d-none d-lg-block">
+                <div class="row mb-4 text-secondary">
+                    <div class="col-sm-6"><strong class="d-block text-truncate">Item (s)</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Preço (un.)</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Quantidade</strong></div>
+                    <div class="col col-sm-2"><strong class="d-block text-truncate">Subtotal</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+                    <div class="col-lg-6 col-xl-4">
+                                    <div class="card shadow-sm mb-3">
+                        <div class="card-header"><i class="fal fa-fw fa-map-marked-alt"></i> Endereço de Retirada</div>
+                        <div class="card-body">
+                            <strong>MATRIZ</strong> <br>
+
+                            <i class="fas fa-fw fa-map-marker-alt text-danger"></i> Rua Joaquim Miranda, 252, 
+                            casa<br>                            Vila Augusta <br>
+                            GUARULHOS / SP <br>
+                            <strong>CEP:</strong> 07023-051                        </div>
+                    </div>
+                            </div>
+                <div class="col-lg-6 col-xl-3">
+            <h5><%= fa_icon "product-hunt fw" %> Pontuação total</h5>
+            <ul class="list-group shadow-sm mb-3">
+                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <b>Graduação</b>
+                    135,00 pts 
+                </li>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <b>Unilevel</b>
+                    135,00 pts
+                </li>
+                                            </ul>
+            <hr>
+            <ul class="list-group shadow-sm mb-3">
+                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <b>Subtotal</b>
+                    <span>
+                        R$ 160,00                    </span>
+                </li>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <b>Frete</b>
+                    <span class="frete_definido">
+                         Não possui                    </span>
+                </li>
+                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <b>Total</b>
+                    <span class=" total_definido">
+                        R$ 160,00                    </span>
+                </li>
+            </ul>
+            <div class="d-flex flex-wrap justify-content-between">
+                <%= link_to "Escolher mais produtos", backoffice_store_products_path, class: "btn btn-outline-secondary mb-2" %>
+                <%= link_to "Continuar", backoffice_store_confirmation_path, class: "btn btn-success mb-2" %>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+<%- end %>

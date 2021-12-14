@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   after_save :create_user_points
 
+  def point(ref)
+    points.find_by(reference: Reference.find_by(title: ref))
+  end
+
   private
 
   def create_user_points

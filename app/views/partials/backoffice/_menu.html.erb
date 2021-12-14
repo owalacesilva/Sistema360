@@ -48,9 +48,9 @@
     <%- end %>
   </li>
   <li class="menu-item mb-2">
-    <%= link_to '#', class: "menu-link #{current_page == 'register' ? 'active' : ''}" do %>
+    <%= link_to backoffice_reports_points_path, class: "menu-link #{current_page == 'reports' ? 'active' : ''}" do %>
       <%= fa_icon "folder-o fw" %>
-      <span class="text">Relatórios</span>
+      <span class="text">Relatório de Pontos</span>
     <%- end %>
   </li>
   <li class="menu-item mb-2">

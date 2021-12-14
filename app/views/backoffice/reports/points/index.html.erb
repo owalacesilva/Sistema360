@@ -1,0 +1,94 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'reports' } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "folder-o fw" %>
+      <span>Relatório de pontos</span>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="card-title">
+          <span>Total de pontos</span>
+        </h6>
+        <h3><%= @point.amount %></h3>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <h6 class="card-header">
+        <%= fa_icon "filter fw" %><span>Filtro</span>
+      </h6>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Ativo</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Ativo" aria-label="Ativo" />
+          </div>
+          <div class="col-lg-2">
+            <label for="filter_actived" class="form-label">Tipo de ponto</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Nível" aria-label="Nível" />
+          </div>
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Mês</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Mês" aria-label="Mês" />
+          </div>
+          <div class="col-lg-1">
+            <label for="filter_actived" class="form-label">Ano</label>
+            <input type="text" class="form-control" id="filter_actived" placeholder="Ano" aria-label="Ano" />
+          </div>
+          <div class="col">
+            <label class="form-label">&nbsp;</label><br />
+            <button class="btn btn-primary">Filtrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <form>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Procurar</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" cname="name" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6 text-end">
+            <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Registrado</th>
+              <th scope="col">Tipo de Ponto</th>
+              <th scope="col">Pontos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @records.empty? %>
+              <tr>
+                <td colspan="5">
+                  <p class="text-center m-0">Você ainda não fez nenhum ponto</p>
+                </td>
+              </tr>
+            <% else %>
+              <% @records.each do |points_record| %>
+                <% presenter(points_record) do |_presenter| %>
+                  <tr>
+                    <td><%= _presenter.created_at_formatted %></td>
+                    <td><%= _presenter.record_date_formatted %></td>
+                    <td><%= _presenter.reference.title %></td>
+                    <td><%= _presenter.point_amount_formatted %></td>
+                  </tr>
+                <%- end %>
+              <%- end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- end %>

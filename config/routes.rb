@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       resources :detailed_extract
     end
 
+    namespace :reports do
+      resources :points
+    end
+
     namespace :store do
       resources :products, only: [:index, :show]
       get "shipping", controller: :shipping, action: :index, as: :shipping

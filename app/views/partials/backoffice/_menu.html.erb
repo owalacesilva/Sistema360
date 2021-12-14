@@ -60,6 +60,12 @@
     <%- end %>
   </li>
   <li class="menu-item mb-2">
+    <%= link_to backoffice_reports_team_index_path, class: "menu-link #{current_page == 'reports' ? 'active' : ''}" do %>
+      <%= fa_icon "folder-o fw" %>
+      <span class="text">Bônus Equipe</span>
+    <%- end %>
+  </li>
+  <li class="menu-item mb-2">
     <%= link_to backoffice_supplies_path, class: "menu-link #{current_page == 'supplies' ? 'active' : ''}" do %>
       <%= fa_icon "download fw" %>
       <span class="text">Materiais</span>

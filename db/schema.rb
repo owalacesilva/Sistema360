@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_145505) do
+ActiveRecord::Schema.define(version: 2021_12_14_184449) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -216,6 +216,21 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
     t.index ["user_id"], name: "index_user_graduations_on_user_id"
   end
 
+  create_table "user_networks", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "left", null: false
+    t.integer "right", null: false
+    t.integer "depth", null: false
+    t.decimal "points", precision: 10, scale: 2, default: "0.0", null: false
+    t.bigint "user_sponsor_id", null: false
+    t.bigint "user_parent_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_user_networks_on_user_id"
+    t.index ["user_parent_id"], name: "index_user_networks_on_user_parent_id"
+    t.index ["user_sponsor_id"], name: "index_user_networks_on_user_sponsor_id"
+  end
+
   create_table "user_point_records", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -321,6 +336,9 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
   add_foreign_key "user_bank_accounts", "users", on_update: :cascade
   add_foreign_key "user_graduations", "graduations", on_update: :cascade
   add_foreign_key "user_graduations", "users", on_update: :cascade
+  add_foreign_key "user_networks", "users", column: "user_parent_id", on_update: :cascade
+  add_foreign_key "user_networks", "users", column: "user_sponsor_id", on_update: :cascade
+  add_foreign_key "user_networks", "users", on_update: :cascade
   add_foreign_key "user_point_records", "references", on_update: :cascade
   add_foreign_key "user_point_records", "users", on_update: :cascade
   add_foreign_key "user_points", "references", on_update: :cascade

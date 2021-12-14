@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   belongs_to :sponsor, class_name: "User", optional: true
   has_many :sponsored, class_name: "User", foreign_key: "sponsor_id", dependent: :nullify, inverse_of: :sponsor
+  has_one :node, class_name: "UserNetwork", foreign_key: "user_id", dependent: :nullify, inverse_of: :user
+  has_many :network, class_name: "UserNetwork", foreign_key: "user_sponsor_id", dependent: :nullify, inverse_of: :sponsor
+  has_many :children, class_name: "UserNetwork", foreign_key: "user_parent_id", dependent: :nullify, inverse_of: :sponsor
   has_one :bank_account, class_name: "UserBankAccount", dependent: :destroy
   has_many :points, class_name: "UserPoint", dependent: :destroy
   has_many :point_records, class_name: "UserPointRecord", dependent: :destroy

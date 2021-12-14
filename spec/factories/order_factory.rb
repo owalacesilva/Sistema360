@@ -25,5 +25,11 @@ FactoryBot.define do
       canceled { true }
       canceled_at { Time.zone.today }
     end
+
+    factory :order_complete do
+      association :user
+      association :billing_address, factory: :address
+      association :shipping_address, factory: :address
+    end
   end
 end

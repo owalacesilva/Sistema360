@@ -307,6 +307,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_145505) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "order_items", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "order_items", "products", on_update: :cascade

@@ -128,7 +128,9 @@ FactoryBot.define do
 
       after(:create) do |user, evaluator|
         base_value = Random.rand(1...1_200)
-        create_list(:point_distribution, evaluator.point_distributions_count, user: user, base_value: base_value)
+        order = create(:order_complete)
+        create_list(:point_distribution, evaluator.point_distributions_count, user: user, order: order,
+          base_value: base_value)
 
         user.reload
       end

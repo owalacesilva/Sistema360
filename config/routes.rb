@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     namespace :reports do
       resources :points
+      resources :referral
     end
 
     namespace :store do

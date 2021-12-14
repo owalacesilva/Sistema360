@@ -1,6 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
+# Referencias
+ref = Reference.create(title: "Ativação")
+
 # Graduations
 [
   { title: "Empreendedor", volume: 0, max_points_by_team: 0 },
@@ -57,7 +60,7 @@ root = User.new(root_attr)
 root.save!
 
 def create_subnetwork(sponsor)
-  Random.rand(1...5).times do
+  Random.rand(10...50).times do
     user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, sponsor: sponsor))
     user.save
     create_order(user)
@@ -67,9 +70,9 @@ end
 def add_points_to_user(order)
   point_dist = PointDistribution.new(done: false, params: nil, order: order)
   point_dist.user = order.user
-  point_dist.reference = FactoryBot.create(:reference)
+  point_dist.reference = Reference.first
   point_dist.base_value = order.total
-  point_dist.save!
+  point_dist.save
 end
 
 def add_order_items_and_save_order(order, product)
@@ -89,11 +92,12 @@ def create_order(user)
 end
 
 # Childrens from root
-childrens = Random.rand(10...20)
+childrens = Random.rand(100...200)
 childrens.times do
   attrs = FactoryBot.attributes_for(:user, :actived, :verified, sponsor: root)
   sponsored = User.new(attrs)
-  sponsored.save!
+  sponsored.save
+  create_order(sponsored)
 
   create_subnetwork(sponsored)
 end

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   
-  describe "when user is builded" do
+  describe "when build an user" do
     let(:sponsor) { create(:user, :actived) }
 
     context "without first_name" do
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "is deleted" do
+  describe "when delete an user" do
     context "with sponsored" do
       let(:user) { create(:user_with_sponsored) }
 

@@ -28,4 +28,15 @@ class User < ApplicationRecord
   validates :email, confirmation: true
   validates :gender, inclusion: { in: %w[male famale] }
   validates :status, inclusion: { in: %w[actived] }
+
+  after_save :create_user_points
+
+  private
+
+  def create_user_points
+    ref1 = Reference.first
+    #ref2 = Reference.create(title: "Upgrade")
+    points.create(reference_id: ref1.id, amount: 0)
+    #points.create(reference_id: ref2.id, amount: 0)
+  end
 end

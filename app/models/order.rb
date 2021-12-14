@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user, validate: true, touch: true
-  belongs_to :billing_address, class_name: "Address", validate: true, optional: false
-  belongs_to :shipping_address, class_name: "Address", validate: true, optional: true
+  belongs_to :billing_address, class_name: "Address", validate: true
+  belongs_to :shipping_address, class_name: "Address", validate: true
 
   has_many :items, class_name: "OrderItem", autosave: true, dependent: :destroy
 

@@ -51,4 +51,30 @@ RSpec.describe Order, type: :model do
       it { is_expected.not_to be_valid }
     end
   end
+
+  context "when trying create" do
+    context "without user" do
+      subject(:order) { build(:order_complete, user: nil) }
+
+      it "returns user required" do
+        expect(order.save).to be_falsey
+      end
+    end
+
+    context "without billing address" do
+      subject(:order) { build(:order_complete, billing_address: nil) }
+
+      it "returns billing_address required" do
+        expect(order.save).to be_falsey
+      end
+    end
+
+    context "without shipping address" do
+      subject(:order) { build(:order_complete, shipping_address: nil) }
+
+      it "returns shipping_address required" do
+        expect(order.save).to be_falsey
+      end
+    end
+  end
 end

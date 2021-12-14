@@ -1,0 +1,19 @@
+class UserPointRecordPresenter < SimpleDelegator
+
+  include ActionView::Helpers::NumberHelper
+
+  def point_amount_formatted
+    return "0.00 Pts" unless valid_float?(amount)
+
+    number_to_currency(amount, locale: :"pt-BR", precision: 2, unit: "Pts", separetor: ",", delimiter: ".", 
+      format: "%n %u")
+  end
+
+  def created_at_formatted
+    created_at.strftime("%d/%m/%Y")
+  end
+
+  def record_date_formatted
+    record_date.strftime("%d/%m/%Y")
+  end
+end

@@ -219,16 +219,16 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   create_table "user_networks", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "left", null: false
-    t.integer "right", null: false
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
     t.integer "depth", null: false
     t.decimal "points", precision: 10, scale: 2, default: "0.0", null: false
-    t.bigint "user_sponsor_id", null: false
-    t.bigint "user_parent_id", null: false
+    t.bigint "sponsor_node_id"
+    t.bigint "parent_node_id"
     t.bigint "user_id", null: false
+    t.index ["parent_node_id"], name: "index_user_networks_on_parent_node_id"
+    t.index ["sponsor_node_id"], name: "index_user_networks_on_sponsor_node_id"
     t.index ["user_id"], name: "index_user_networks_on_user_id"
-    t.index ["user_parent_id"], name: "index_user_networks_on_user_parent_id"
-    t.index ["user_sponsor_id"], name: "index_user_networks_on_user_sponsor_id"
   end
 
   create_table "user_point_records", charset: "utf8mb4", force: :cascade do |t|
@@ -348,8 +348,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   add_foreign_key "user_bank_accounts", "users", on_update: :cascade
   add_foreign_key "user_graduations", "graduations", on_update: :cascade
   add_foreign_key "user_graduations", "users", on_update: :cascade
-  add_foreign_key "user_networks", "users", column: "user_parent_id", on_update: :cascade
-  add_foreign_key "user_networks", "users", column: "user_sponsor_id", on_update: :cascade
+  add_foreign_key "user_networks", "user_networks", column: "parent_node_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "user_networks", "user_networks", column: "sponsor_node_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "user_networks", "users", on_update: :cascade
   add_foreign_key "user_point_records", "references", on_update: :cascade
   add_foreign_key "user_point_records", "users", on_update: :cascade

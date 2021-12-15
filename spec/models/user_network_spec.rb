@@ -7,11 +7,9 @@ RSpec.describe UserNetwork, type: :model do
     let(:user_parent) { create(:user, sponsor: user_sponsor) }
     let(:user) { create(:user, sponsor: user_sponsor) }
 
-    before { Reference.create(title: "Ativação") }
-
     context "with valid attributes" do
       subject(:user_network) do
-        build(:user_network, user: user, user_sponsor: user_sponsor, user_parent: user_parent)
+        build(:user_network, user: user, sponsor_node: user_sponsor.node, parent_node: user_parent.node)
       end
 
       it { is_expected.to be_valid }
@@ -20,13 +18,13 @@ RSpec.describe UserNetwork, type: :model do
 
   context "when user network is builded" do
     context "without left" do
-      subject(:user_network) { build(:user_network, left: nil) }
+      subject(:user_network) { build(:user_network, lft: nil) }
 
       it { is_expected.not_to be_valid }
     end
 
     context "without right" do
-      subject(:user_network) { build(:user_network, right: nil) }
+      subject(:user_network) { build(:user_network, rgt: nil) }
 
       it { is_expected.not_to be_valid }
     end
@@ -54,7 +52,7 @@ RSpec.describe UserNetwork, type: :model do
     end
 
     context "without user sponsor" do
-      subject(:user_network) { build(:user_network, user_sponsor: nil) }
+      subject(:user_network) { build(:user_network, sponsor_node: nil) }
 
       it "returns user sponsor required" do
         expect(user_network.save).to be_falsey
@@ -62,7 +60,7 @@ RSpec.describe UserNetwork, type: :model do
     end
 
     context "without user parent" do
-      subject(:user_network) { build(:user_network, user_parent: nil) }
+      subject(:user_network) { build(:user_network, parent_node: nil) }
 
       it "returns user parent required" do
         expect(user_network.save).to be_falsey

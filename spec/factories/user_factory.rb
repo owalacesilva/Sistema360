@@ -135,5 +135,16 @@ FactoryBot.define do
         user.reload
       end
     end
+
+    factory :user_spilled do
+      after(:create) do |user|
+        sponsor_node = create(:user_network, user: create(:user), lft: 1, rgt: 6)
+        parent_node = create(:user_network, user: create(:user), lft: 2, rgt: 5)
+        create(:user_network, user: user, sponsor_node: sponsor_node, parent_node: parent_node, 
+               lft: 3, rgt: 4)
+
+        user.reload
+      end
+    end
   end
 end

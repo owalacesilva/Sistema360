@@ -11,13 +11,13 @@
       <span class="text">Cadastrar</span>
     <%- end %>
   </li>
-  <li class="menu-item mb-2">
+  <li class="menu-item mb-2 d-none">
     <%= link_to backoffice_newsletters_path, class: "menu-link #{current_page == 'newsletters' ? 'active' : ''}" do %>
       <%= fa_icon "bullhorn fw" %>
       <span class="text">Informativos</span>
     <%- end %>
   </li>
-  <li class="menu-item mb-2">
+  <li class="menu-item mb-2 d-none">
     <%= link_to backoffice_events_path, class: "menu-link #{current_page == 'events' ? 'active' : ''}" do %>
       <%= fa_icon "calendar fw" %>
       <span class="text">Eventos</span>
@@ -65,7 +65,7 @@
       <span class="text">Bônus Equipe</span>
     <%- end %>
   </li>
-  <li class="menu-item mb-2">
+  <li class="menu-item mb-2 d-none">
     <%= link_to backoffice_supplies_path, class: "menu-link #{current_page == 'supplies' ? 'active' : ''}" do %>
       <%= fa_icon "download fw" %>
       <span class="text">Materiais</span>

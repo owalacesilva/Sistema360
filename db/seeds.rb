@@ -57,10 +57,11 @@ end
 # Root member
 root_attr = FactoryBot.attributes_for(:user, :root, :actived, :verified)
 root = User.new(root_attr)
+root.build_node(lft: 1, rgt: 2, depth: 0, points: 0)
 root.save!
 
 def create_subnetwork(sponsor)
-  Random.rand(10...50).times do
+  Random.rand(10...20).times do
     user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, sponsor: sponsor))
     user.save
     create_order(user)
@@ -92,7 +93,7 @@ def create_order(user)
 end
 
 # Childrens from root
-childrens = Random.rand(100...200)
+childrens = Random.rand(10...20)
 childrens.times do
   attrs = FactoryBot.attributes_for(:user, :actived, :verified, sponsor: root)
   sponsored = User.new(attrs)

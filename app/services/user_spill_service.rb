@@ -63,7 +63,7 @@ class UserSpillService
 
   def create_user_network_node(user_parent_node, user, target)
     update_all_nodes_before_insert(target)
-    user_node = UserNetwork.new(user: user, parent_node: user_parent_node,
+    user_node = UserNetwork.new(user: user, spondor_node: user_parent_node, parent_node: user_parent_node,
                                 depth: (user_parent_node.depth + 1), lft: target, rgt: (target + 1))
     user_node.save!
     user_node

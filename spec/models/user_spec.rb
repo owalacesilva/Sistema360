@@ -1,7 +1,26 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  
+
+  context "when the user is saved" do
+    context "with valid attributes" do
+      let(:user_sponsor) { create(:user) }
+      let(:user) { build(:user, sponsor: user_sponsor) }
+
+      it "returns a new user" do
+        expect(user.save).to eq(true)
+      end
+    end
+
+    context "without user sponsor" do
+      subject(:user) { build(:user, sponsor: nil) }
+
+      it "returns a new user" do
+        expect(user.save).to eq(true)
+      end
+    end
+  end
+
   describe "when build an user" do
     let(:sponsor) { create(:user, :actived) }
 

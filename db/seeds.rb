@@ -2,7 +2,8 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 # Referencias
-ref = Reference.create(title: "Ativação")
+Reference.create(title: "ACTIVATION")
+Reference.create(title: "REACTIVATION")
 
 # Graduations
 [
@@ -71,7 +72,7 @@ end
 def add_points_to_user(order)
   point_dist = PointDistribution.new(done: false, params: nil, order: order)
   point_dist.user = order.user
-  point_dist.reference = Reference.first
+  point_dist.reference = Reference.activation
   point_dist.base_value = order.total
   point_dist.save
 end

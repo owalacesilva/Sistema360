@@ -6,7 +6,7 @@ RSpec.describe UserSpillQueue, type: :model do
     let(:user_sponsor) { create(:user) }
     let(:user) { create(:user, sponsor: user_sponsor) }
 
-    before { Reference.create(title: "Ativação") }
+    before { Reference.create(title: "ACTIVATION") }
 
     context "with valid attributes" do
       subject(:user_spill_queue) do

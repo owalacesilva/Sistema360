@@ -48,20 +48,20 @@
     <%- end %>
   </li>
   <li class="menu-item mb-2">
-    <%= link_to backoffice_reports_points_path, class: "menu-link #{current_page == 'reports' ? 'active' : ''}" do %>
+    <%= link_to backoffice_reports_points_path, class: "menu-link #{current_page == 'point_reports' ? 'active' : ''}" do %>
       <%= fa_icon "folder-o fw" %>
       <span class="text">Relatório de Pontos</span>
     <%- end %>
   </li>
   <li class="menu-item mb-2">
-    <%= link_to backoffice_reports_referral_index_path, class: "menu-link #{current_page == 'reports' ? 'active' : ''}" do %>
-      <%= fa_icon "folder-o fw" %>
+    <%= link_to backoffice_reports_referral_index_path, class: "menu-link #{current_page == 'referral_reports' ? 'active' : ''}" do %>
+      <%= fa_icon "line-chart fw" %>
       <span class="text">Bônus Indicação</span>
     <%- end %>
   </li>
   <li class="menu-item mb-2">
-    <%= link_to backoffice_reports_team_index_path, class: "menu-link #{current_page == 'reports' ? 'active' : ''}" do %>
-      <%= fa_icon "folder-o fw" %>
+    <%= link_to backoffice_reports_team_index_path, class: "menu-link #{current_page == 'team_reports' ? 'active' : ''}" do %>
+      <%= fa_icon "line-chart fw" %>
       <span class="text">Bônus Equipe</span>
     <%- end %>
   </li>

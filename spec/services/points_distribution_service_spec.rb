@@ -5,7 +5,7 @@ def user_point(user)
 end
 
 RSpec.describe PointsDistributionService do
-  let(:user) { create(:user) }
+  let(:user) { create(:user_spilled) }
   let(:order) { create(:order_complete, user: user) }
   let(:reference) { create(:reference) }
 
@@ -18,10 +18,6 @@ RSpec.describe PointsDistributionService do
 
     it "is expected point dist to be done" do
       expect(point_dist.done).to eq(true)
-    end
-
-    it "is expected that user point have the same base value" do
-      expect(user_point(user).reload.amount).to eq(point_dist.base_value)
     end
   end
 
@@ -39,6 +35,19 @@ RSpec.describe PointsDistributionService do
 
     it "does not increment user point" do
       expect(user_point(user).reload.amount).to eq(0)
+    end
+  end
+
+  context "when reference points is from activation" do
+    let(:point_dist) do
+      create(:point_distribution, user: user, order: order,
+                                  base_value: 100.0, reference: user_point(user).reference)
+    end
+
+    before { described_class.call(point_dist) }
+
+    it "is expected that user point is 30.0 points" do
+      expect(user_point(user).reload.amount).to eq(30.0)
     end
   end
 end

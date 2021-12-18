@@ -55,15 +55,9 @@ end
   payment_method.save!
 end
 
-# Root member
-root_attr = FactoryBot.attributes_for(:user, :root, :actived, :verified)
-root = User.new(root_attr)
-root.build_node(lft: 1, rgt: 2, depth: 0, points: 0)
-root.save!
-
 def create_subnetwork(sponsor)
   Random.rand(10...20).times do
-    user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, sponsor: sponsor))
+    user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, password: "123456", sponsor: sponsor))
     user.save
     create_order(user)
   end
@@ -93,10 +87,17 @@ def create_order(user)
   add_order_items_and_save_order(order, Product.first)
 end
 
+# Root member
+root_attr = FactoryBot.attributes_for(:user, :root, :actived, :verified)
+root = User.new(root_attr)
+root.build_node(lft: 1, rgt: 2, depth: 0, points: 0)
+root.save!
+create_order(root)
+
 # Childrens from root
 childrens = Random.rand(10...20)
 childrens.times do
-  attrs = FactoryBot.attributes_for(:user, :actived, :verified, sponsor: root)
+  attrs = FactoryBot.attributes_for(:user, :actived, :verified, password: "123456", sponsor: root)
   sponsored = User.new(attrs)
   sponsored.save
   create_order(sponsored)

@@ -235,9 +235,12 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.bigint "origin_user_id", null: false
     t.bigint "reference_id", null: false
     t.date "record_date"
+    t.decimal "base_value", precision: 10, scale: 2
     t.decimal "amount", precision: 10, scale: 2
+    t.index ["origin_user_id"], name: "index_user_point_records_on_origin_user_id"
     t.index ["reference_id"], name: "index_user_point_records_on_reference_id"
     t.index ["user_id"], name: "index_user_point_records_on_user_id"
   end
@@ -352,6 +355,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   add_foreign_key "user_networks", "user_networks", column: "sponsor_node_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "user_networks", "users", on_update: :cascade
   add_foreign_key "user_point_records", "references", on_update: :cascade
+  add_foreign_key "user_point_records", "users", column: "origin_user_id", on_update: :cascade
   add_foreign_key "user_point_records", "users", on_update: :cascade
   add_foreign_key "user_points", "references", on_update: :cascade
   add_foreign_key "user_points", "users", on_update: :cascade

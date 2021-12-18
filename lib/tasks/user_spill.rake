@@ -18,7 +18,7 @@ namespace :queues do
     queue.each do |points|
       service = PointsDistributionService.call(points)
       if service.success?
-        puts "[success] User received #{service.result.amount} points"
+        puts "[success] User received #{service.result} points"
       else
         puts "[failed] User '#{points.user_id}' does not received points by **#{service.errors.to_json}**"
       end

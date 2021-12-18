@@ -9,5 +9,5 @@ class UserNetwork < ApplicationRecord
 
   scope :order_by_right_desc, -> { order(rgt: :desc) }
   scope :right_latest, -> { order_by_right_desc.first }
-  scope :nodes_from_target, ->(target) { where("rgt >= ?", target) }
+  scope :nodes_from_target, ->(target) { where("rgt >= :target", target: target) }
 end

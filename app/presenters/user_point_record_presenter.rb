@@ -2,6 +2,13 @@ class UserPointRecordPresenter < SimpleDelegator
 
   include ActionView::Helpers::NumberHelper
 
+  def base_point_amount_formatted
+    return "0.00 Pts" unless valid_float?(base_value)
+
+    number_to_currency(base_value, locale: :"pt-BR", precision: 2, unit: "Pts", separetor: ",", delimiter: ".", 
+      format: "%n %u")
+  end
+
   def point_amount_formatted
     return "0.00 Pts" unless valid_float?(amount)
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_204712) do
+ActiveRecord::Schema.define(version: 2021_12_18_194138) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -65,10 +65,34 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
     t.string "longitude"
   end
 
+  create_table "commission_types", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "display_name", null: false
+    t.string "unique_name", null: false
+    t.string "description"
+  end
+
+  create_table "commissions", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "display_name", null: false
+    t.string "description"
+    t.integer "percentage", default: 0, null: false
+    t.integer "depth", null: false
+    t.bigint "type_id", null: false
+    t.bigint "reference_id"
+    t.bigint "qualification_id", null: false
+    t.index ["qualification_id"], name: "index_commissions_on_qualification_id"
+    t.index ["reference_id"], name: "index_commissions_on_reference_id"
+    t.index ["type_id"], name: "index_commissions_on_type_id"
+  end
+
   create_table "graduations", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title", null: false
+    t.string "display_name", null: false
+    t.string "unique_name", null: false
     t.decimal "volume", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
   end
@@ -179,7 +203,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   create_table "qualifications", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title", null: false
+    t.string "display_name", null: false
+    t.string "unique_name", null: false
     t.decimal "volume", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
   end
@@ -187,7 +212,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   create_table "references", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title", null: false
+    t.string "display_name", null: false
+    t.string "unique_name", null: false
   end
 
   create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
@@ -240,7 +266,11 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
     t.date "record_date"
     t.decimal "base_value", precision: 10, scale: 2
     t.decimal "amount", precision: 10, scale: 2
+    t.bigint "point_distribution_id"
+    t.bigint "commission_id"
+    t.index ["commission_id"], name: "index_user_point_records_on_commission_id"
     t.index ["origin_user_id"], name: "index_user_point_records_on_origin_user_id"
+    t.index ["point_distribution_id"], name: "index_user_point_records_on_point_distribution_id"
     t.index ["reference_id"], name: "index_user_point_records_on_reference_id"
     t.index ["user_id"], name: "index_user_point_records_on_user_id"
   end
@@ -339,6 +369,9 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "commissions", "commission_types", column: "type_id", on_update: :cascade
+  add_foreign_key "commissions", "qualifications", on_update: :cascade
+  add_foreign_key "commissions", "references", on_update: :cascade
   add_foreign_key "order_items", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "order_items", "products", on_update: :cascade
   add_foreign_key "orders", "addresses", column: "billing_address_id", on_update: :cascade
@@ -354,6 +387,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_204712) do
   add_foreign_key "user_networks", "user_networks", column: "parent_node_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "user_networks", "user_networks", column: "sponsor_node_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "user_networks", "users", on_update: :cascade
+  add_foreign_key "user_point_records", "commissions"
+  add_foreign_key "user_point_records", "point_distributions"
   add_foreign_key "user_point_records", "references", on_update: :cascade
   add_foreign_key "user_point_records", "users", column: "origin_user_id", on_update: :cascade
   add_foreign_key "user_point_records", "users", on_update: :cascade

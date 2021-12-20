@@ -36,7 +36,7 @@ class User < ApplicationRecord
   after_save :create_user_points
 
   def point(ref)
-    points.find_by(reference: Reference.find_by(title: ref))
+    points.find_by(reference: Reference.uname(ref))
   end
 
   def point_amount(ref)
@@ -45,6 +45,10 @@ class User < ApplicationRecord
 
   def sponsor?
     sponsor.present?
+  end
+
+  def qualification
+    qualifications.order(id: :desc).first
   end
 
   private

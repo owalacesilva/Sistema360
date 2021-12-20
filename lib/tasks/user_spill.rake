@@ -16,7 +16,7 @@ namespace :queues do
   task :points => :environment do
     queue = PointDistribution.not_done_by_old
     queue.each do |points|
-      service = PointsDistributionService.call(points)
+      service = PointsDistributionInteractor.call(point_dist: points)
       if service.success?
         puts "[success] User received #{service.result} points"
       else

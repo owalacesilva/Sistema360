@@ -63,16 +63,17 @@
             <tr>
               <th scope="col">Data</th>
               <th scope="col">Registrado</th>
-              <th scope="col">Tipo de Ponto</th>
+              <th scope="col">Tipo de Bônus</th>
               <th scope="col">Usuário</th>
               <th scope="col">Valor base</th>
+              <th scope="col">Percentual</th>
               <th scope="col">Pontos</th>
             </tr>
           </thead>
           <tbody>
             <% if @records.empty? %>
               <tr>
-                <td colspan="6">
+                <td colspan="7">
                   <p class="text-center m-0">Você ainda não fez nenhum ponto</p>
                 </td>
               </tr>
@@ -82,9 +83,10 @@
                   <tr>
                     <td><%= _presenter.created_at_formatted %></td>
                     <td><%= _presenter.record_date_formatted %></td>
-                    <td><%= _presenter.reference.title %></td>
+                    <td><%= _presenter.reference_name %></td>
                     <td><%= _presenter.origin_user.first_name %></td>
                     <td><%= _presenter.base_point_amount_formatted %></td>
+                    <td><%= _presenter.commission_percentage %></td>
                     <td><%= _presenter.point_amount_formatted %></td>
                   </tr>
                 <%- end %>

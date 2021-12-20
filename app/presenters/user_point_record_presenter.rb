@@ -23,4 +23,16 @@ class UserPointRecordPresenter < SimpleDelegator
   def record_date_formatted
     record_date.strftime("%d/%m/%Y")
   end
+
+  def commission_name
+    commission.display_name
+  end
+
+  def reference_name
+    reference.display_name
+  end
+
+  def commission_percentage
+    "#{commission.percentage}%" unless commission.percentage.nil?
+  end
 end

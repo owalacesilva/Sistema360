@@ -62,7 +62,8 @@
           <thead>
             <tr>
               <th scope="col">Data</th>
-              <th scope="col">Tipo de Ponto</th>
+              <th scope="col">Tipo de Bônus</th>
+              <th scope="col">Usuário</th>
               <th scope="col">Valor base</th>
               <th scope="col">Comissão</th>
             </tr>
@@ -79,8 +80,9 @@
                 <% presenter(points_record) do |_presenter| %>
                   <tr>
                     <td><%= _presenter.created_at_formatted %></td>
-                    <td><%= _presenter.record_date_formatted %></td>
-                    <td><%= _presenter.reference.title %></td>
+                    <td><%= _presenter.commission_name %></td>
+                    <td><%= _presenter.origin_user.first_name %></td>
+                    <td><%= _presenter.base_point_amount_formatted %></td>
                     <td><%= _presenter.point_amount_formatted %></td>
                   </tr>
                 <%- end %>

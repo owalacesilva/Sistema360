@@ -3,8 +3,10 @@ class Reference < ApplicationRecord
   has_many :distributions, class_name: "PointDistribution"
   has_many :point_records, class_name: "UserPointRecord"
 
-  validates :title, presence: true
+  validates :display_name, presence: true
+  validates :unique_name, presence: true
 
-  scope :activation, -> { find_by(title: "ACTIVATION") }
-  scope :reactivation, -> { find_by(title: "REACTIVATION") }
+  scope :uname, ->(name) { find_by(unique_name: name) }
+  scope :activation, -> { find_by(unique_name: "ACTIVATION") }
+  scope :reactivation, -> { find_by(unique_name: "REACTIVATION") }
 end

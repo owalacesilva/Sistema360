@@ -17,11 +17,13 @@ class CreatePointDistributions < ActiveRecord::Migration[6.1]
 
     add_reference :point_distributions, :user, index: true, foreign_key: true
     add_reference :point_distributions, :reference, index: true, foreign_key: true
+    add_reference :user_point_records, :point_distribution, index: true, foreign_key: true
   end
 
   def down
     remove_reference :point_distributions, :user, index: true, foreign_key: true
     remove_reference :point_distributions, :reference, index: true, foreign_key: true
+    remove_reference :user_point_records, :point_distribution, index: true, foreign_key: true
     drop_table :point_distributions
   end
 end

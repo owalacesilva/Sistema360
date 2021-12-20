@@ -9,6 +9,8 @@ guard :rspec, cmd: "bundle exec rspec -f doc --color" do
   watch(%r{^app/(.*)(\.erb|\.haml)$}) { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
   # run the integration specs related to the changed controller
   watch(%r{^app/controllers/(.+)\.rb}) { |m| "spec/requests/#{m[1]}_spec.rb" }
+  # run the integration specs related to the changed controller
+  watch(%r{^app/interactors/(.+)\.rb}) { |m| "spec/interactors/#{m[1]}_spec.rb" }
   # run all integration tests when application controller change
   watch('app/controllers/application_controller.rb') { "spec/requests" }
 end

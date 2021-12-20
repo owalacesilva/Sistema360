@@ -3,8 +3,14 @@ require 'rails_helper'
 RSpec.describe Qualification, type: :model do
   
   context "when qualification is builded" do
-    context "without title" do
-      subject(:qualification) { build(:qualification, title: nil) }
+    context "without unique name" do
+      subject(:qualification) { build(:qualification, unique_name: nil) }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context "without display name" do
+      subject(:qualification) { build(:qualification, display_name: nil) }
 
       it { is_expected.not_to be_valid }
     end

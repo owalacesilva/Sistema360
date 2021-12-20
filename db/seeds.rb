@@ -2,24 +2,30 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 # Referencias
-Reference.create(title: "ACTIVATION")
-Reference.create(title: "REACTIVATION")
+Reference.create(unique_name: "activation", display_name: "Activation")
+Reference.create(unique_name: "reactivation", display_name: "Reactivation")
 
 # Graduations
 [
-  { title: "Empreendedor", volume: 0, max_points_by_team: 0 },
-  { title: "Elite", volume: 1_500, max_points_by_team: 750 },
-  { title: "Safira", volume: 4_500, max_points_by_team: 2_250 },
-  { title: "Rubi", volume: 9_000, max_points_by_team: 4_500 },
-  { title: "Esmeralda", volume: 18_000, max_points_by_team: 9_000 },
-  { title: "Diamante", volume: 36_000, max_points_by_team: 18_000 },
-  { title: "Blue Diamond", volume: 72_000, max_points_by_team: 28_800 },
-  { title: "Red Diamond", volume: 300_000, max_points_by_team: 120_000 },
-  { title: "Black Diamond", volume: 600_000, max_points_by_team: 200_000 },
+  { unique_name: "empreendedor", display_name: "Empreendedor", volume: 0, max_points_by_team: 0 },
+  { unique_name: "elite", display_name: "Elite", volume: 1_500, max_points_by_team: 750 },
+  { unique_name: "safira", display_name: "Safira", volume: 4_500, max_points_by_team: 2_250 },
+  { unique_name: "rubi", display_name: "Rubi", volume: 9_000, max_points_by_team: 4_500 },
+  { unique_name: "esmeralda", display_name: "Esmeralda", volume: 18_000, max_points_by_team: 9_000 },
+  { unique_name: "diamante", display_name: "Diamante", volume: 36_000, max_points_by_team: 18_000 },
+  { unique_name: "blue_diamond", display_name: "Blue Diamond", volume: 72_000, max_points_by_team: 28_800 },
+  { unique_name: "red_diamond", display_name: "Red Diamond", volume: 300_000, max_points_by_team: 120_000 },
+  { unique_name: "black_diamond", display_name: "Black Diamond", volume: 600_000, max_points_by_team: 200_000 },
 ].each do |attrs|
   Graduation.create!(attrs)
   Qualification.create!(attrs)
 end
+
+# Commissions
+referral_comm_type = CommissionType.create(display_name: "REFERRAL")
+Commission.create(type: referral_comm_type, reference: Reference.find_by(unique_name: "activation"),
+                  qualification: Qualification.find_by(unique_name: "empreendedor"), display_name: "Bônus Indicação",
+                  percentage: 20, depth: 1)
 
 # Product Categories
 [

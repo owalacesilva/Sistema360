@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :reference do
-
-    sequence(:title) { |n| "REF_#{n}" }
+    display_name { Faker::Nation.nationality }
+    sequence(:unique_name) { |n| "REF_#{n}" }
   end
 end

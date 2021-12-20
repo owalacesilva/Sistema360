@@ -16,4 +16,3 @@ def desliga_log_debug
 end
 
 Rails.logger.level = :debug
-PaperTrail.request.whodunnit = "google@gmail.com"

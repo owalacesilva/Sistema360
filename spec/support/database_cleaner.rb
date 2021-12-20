@@ -5,8 +5,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:deletion)
     # DatabaseCleaner.clean_with(:truncation)
     # This loading seed before each suite
-    # load Rails.root.join("db/seeds.rb")
-    Reference.create(title: "ACTIVATION")
+    load Rails.root.join("db/seeds.rb")
   end
 
   config.before(:each) do

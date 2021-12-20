@@ -5,7 +5,8 @@ class CreateGraduations < ActiveRecord::Migration[6.1]
       t.timestamps null: false
 
       ## Custom fields
-      t.string :title, null: false
+      t.string :display_name, null: false
+      t.string :unique_name, null: false
       t.decimal :volume, null: false, precision: 10, scale: 2, default: false
       t.decimal :max_points_by_team, null: false, precision: 10, scale: 2, default: false
     end

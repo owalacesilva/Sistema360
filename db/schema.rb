@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_194138) do
+ActiveRecord::Schema.define(version: 2021_12_23_073512) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -216,6 +216,28 @@ ActiveRecord::Schema.define(version: 2021_12_18_194138) do
     t.string "unique_name", null: false
   end
 
+  create_table "transactions", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.string "operation", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.integer "percentage"
+    t.decimal "point_amount", precision: 10, scale: 2, null: false
+    t.bigint "origin_user_id", null: false
+    t.bigint "target_user_id", null: false
+    t.bigint "target_wallet_id", null: false
+    t.bigint "origin_wallet_id", null: false
+    t.bigint "reference_id", null: false
+    t.bigint "withdraw_id", null: false
+    t.index ["origin_user_id"], name: "index_transactions_on_origin_user_id"
+    t.index ["origin_wallet_id"], name: "index_transactions_on_origin_wallet_id"
+    t.index ["reference_id"], name: "index_transactions_on_reference_id"
+    t.index ["target_user_id"], name: "index_transactions_on_target_user_id"
+    t.index ["target_wallet_id"], name: "index_transactions_on_target_wallet_id"
+    t.index ["withdraw_id"], name: "index_transactions_on_withdraw_id"
+  end
+
   create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -367,6 +389,28 @@ ActiveRecord::Schema.define(version: 2021_12_18_194138) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "wallets", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "balance", precision: 10, scale: 2
+    t.decimal "incomes", precision: 10, scale: 2
+    t.decimal "expenses", precision: 10, scale: 2
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
+  end
+
+  create_table "withdraws", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blocked", default: false, null: false
+    t.date "blocked_at"
+    t.boolean "approved", default: false, null: false
+    t.date "approved_at"
+    t.decimal "balance", precision: 10, scale: 2
+    t.bigint "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_withdraws_on_wallet_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "commissions", "commission_types", column: "type_id", on_update: :cascade
@@ -381,6 +425,12 @@ ActiveRecord::Schema.define(version: 2021_12_18_194138) do
   add_foreign_key "point_distributions", "references"
   add_foreign_key "point_distributions", "users"
   add_foreign_key "products", "product_categories", column: "category_id", on_update: :cascade
+  add_foreign_key "transactions", "references", on_update: :cascade
+  add_foreign_key "transactions", "users", column: "origin_user_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "transactions", "users", column: "target_user_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "transactions", "wallets", column: "origin_wallet_id", on_update: :cascade
+  add_foreign_key "transactions", "wallets", column: "target_wallet_id", on_update: :cascade
+  add_foreign_key "transactions", "withdraws", on_update: :cascade, on_delete: :cascade
   add_foreign_key "user_bank_accounts", "users", on_update: :cascade
   add_foreign_key "user_graduations", "graduations", on_update: :cascade
   add_foreign_key "user_graduations", "users", on_update: :cascade
@@ -399,4 +449,6 @@ ActiveRecord::Schema.define(version: 2021_12_18_194138) do
   add_foreign_key "user_spill_queues", "users", column: "user_sponsor_id", on_update: :cascade
   add_foreign_key "user_spill_queues", "users", on_update: :cascade
   add_foreign_key "users", "users", column: "sponsor_id", on_update: :cascade
+  add_foreign_key "wallets", "users", on_update: :cascade
+  add_foreign_key "withdraws", "wallets", on_update: :cascade, on_delete: :cascade
 end

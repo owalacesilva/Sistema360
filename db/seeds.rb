@@ -135,6 +135,12 @@ def create_order(user)
   add_order_items_and_save_order(order, Product.first)
 end
 
+def create_withdraw(user)
+  7.times do
+    Withdraw.create!(wallet: user.wallet, balance: 100.0)
+  end
+end
+
 if Rails.env.development?
   # Root member
   root_attr = FactoryBot.attributes_for(:user, :root, :actived, :verified)
@@ -143,6 +149,7 @@ if Rails.env.development?
   root.qualifications << Qualification.uname(:black_diamond)
   root.save!
   create_order(root)
+  create_withdraw(root)
 
   # Childrens from root
   childrens = 2 # Random.rand(10...20)

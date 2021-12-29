@@ -1,0 +1,60 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'withdraw' } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "money fw" %>
+      <span>Solicitar saque</span>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-4">  
+            <h6 class="card-title">
+              <span>Saldo disponivel</span>
+            </h6>
+            <h3>R$ 10.000,00</h3>
+          </div>
+          <div class="col-lg">
+            <form name="form" class="form-withdraw" action="<%= backoffice_financial_withdraw_index_path %>">
+              <div class="row g-3">
+                <div class="col-lg-3">
+                  <label for="filter_actived" class="form-label">Valor a solicitar</label>
+                  <input type="text" class="form-control" name="value" />
+                </div>
+                <div class="col">
+                  <label class="form-label">&nbsp;</label><br />
+                  <button class="btn btn-primary">Solicitar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Banco</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Titular</th>
+              <th scope="col">Agenda</th>
+              <th scope="col">Conta</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Situação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="9">
+                <p class="text-center m-0">Você ainda não fez nenhuma solicitação</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- end %>

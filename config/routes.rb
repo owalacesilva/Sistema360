@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     namespace :financial do
       resources :detailed_extract
+      resources :withdraw
     end
 
     namespace :reports do

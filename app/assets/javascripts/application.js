@@ -20,4 +20,30 @@
 
 $(document).ready(function() {
   // do nothing
+
+  $(".form-withdraw").on("submit", function(event) {
+    event.preventDefault();
+    var form = $(this)
+
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: "POST",
+      dataType: "json",
+      processData: true, 
+      success: function (data) {
+        alert('Success ! You will redirect in 100 seconds');
+        console.log(data)
+        setTimeout(function() {
+          window.location.reload();
+        },10000);
+      },
+      async: true,
+      error: function(data) {
+        // handleRequestError(data);
+      }
+    })
+
+    return false;
+  })
 });

@@ -16,7 +16,7 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.references :target_wallet, null: false, foreign_key: { to_table: :wallets, on_delete: :restrict, on_update: :cascade }
       t.references :origin_wallet, null: false, foreign_key: { to_table: :wallets, on_delete: :restrict, on_update: :cascade }
       t.references :reference, null: false, foreign_key: { to_table: :references, on_delete: :restrict, on_update: :cascade }
-      t.references :withdraw, null: false, foreign_key: { to_table: :withdraws, on_delete: :cascade, on_update: :cascade }
+      t.references :withdraw, null: true, foreign_key: { to_table: :withdraws, on_delete: :cascade, on_update: :cascade }
     end
   end
 

@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :user_network do
+    association :user, factory: :user, strategy: :build
+
     lft { 1 }
     rgt { 2 }
     depth { 0 }

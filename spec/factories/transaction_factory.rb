@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :transaction do
+    association :reference, strategy: :build
+
     operation { "income" }
     amount { Faker::Commerce.price(range: 1.0..1000.0, as_string: false) }
     percentage { Faker::Number.between(from: 1, to: 10) }

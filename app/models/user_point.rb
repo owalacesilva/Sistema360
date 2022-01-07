@@ -3,6 +3,7 @@ class UserPoint < ApplicationRecord
   belongs_to :reference, validate: true, touch: false
 
   validates :amount, presence: true
+  # validates :user, uniqueness: { scope: :reference }
 
   def increment_points!(value)
     self.amount += value

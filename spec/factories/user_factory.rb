@@ -26,10 +26,6 @@ FactoryBot.define do
     country_code { Faker::Address.country_code }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
-    
-    transient do
-      qualify { "empreendedor" }
-    end
 
     trait :root do
       username { "t001" }
@@ -51,12 +47,6 @@ FactoryBot.define do
     trait :verified do
       verified { true }
       verified_at { Time.zone.today }
-    end
-
-    after(:create) do |user, evaluator|
-      user.qualifications << Qualification.uname(evaluator.qualify)
-      user.save
-      user.reload
     end
 
     factory :user_with_sponsored do

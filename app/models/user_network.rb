@@ -1,5 +1,5 @@
 class UserNetwork < ApplicationRecord
-  belongs_to :user, validate: true, touch: true
+  belongs_to :user, optional: false, touch: true
   belongs_to :sponsor_node, class_name: "UserNetwork", optional: true, touch: true
   belongs_to :parent_node, class_name: "UserNetwork", optional: true, touch: true
 

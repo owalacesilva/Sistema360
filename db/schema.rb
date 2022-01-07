@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_073512) do
     t.bigint "target_wallet_id", null: false
     t.bigint "origin_wallet_id", null: false
     t.bigint "reference_id", null: false
-    t.bigint "withdraw_id", null: false
+    t.bigint "withdraw_id"
     t.index ["origin_user_id"], name: "index_transactions_on_origin_user_id"
     t.index ["origin_wallet_id"], name: "index_transactions_on_origin_wallet_id"
     t.index ["reference_id"], name: "index_transactions_on_reference_id"
@@ -304,6 +304,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_073512) do
     t.bigint "reference_id", null: false
     t.decimal "amount", precision: 10, scale: 2
     t.index ["reference_id"], name: "index_user_points_on_reference_id"
+    t.index ["user_id", "reference_id"], name: "index_user_points_on_user_id_and_reference_id", unique: true
     t.index ["user_id"], name: "index_user_points_on_user_id"
   end
 

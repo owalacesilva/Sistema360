@@ -1,5 +1,6 @@
 class Qualification < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :user_qualifications, dependent: :destroy
+  has_many :users, through: :user_qualifications
 
   validates :display_name, presence: true
   validates :unique_name, presence: true

@@ -33,11 +33,14 @@ class CommissionsPaymentService
     @user.points.each do |user_point|
       @transactions << Transaction.create!(transaction_params(user_point))
     end
+    @total_amount = @transactions.sum(&:amount)
   end
 
   def add_wallet_balance
-    @total_amount = @transactions.sum(&:amount)
-    @user.wallet.balance = @total_amount
+    wallet = user.wallet
+    balance = @total_amount
+    incomes = wallet.incomes + balance
+    wallet.update!(balance: balance, incomes: incomes)
   end
 
   def reset_user_points

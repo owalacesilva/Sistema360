@@ -83,7 +83,7 @@ end
   category.save
 
   # Faker products
-  2.times do
+  10.times do
     product_attr = FactoryBot.attributes_for(:product, :published)
     product = Product.new(product_attr)
     product.category = category
@@ -103,7 +103,7 @@ end
 # ======================================
 def create_subnetwork(sponsor)
   #Random.rand(10...20).times do
-  4.times do
+  10.times do
     user = User.new(FactoryBot.attributes_for(:user, :actived, :verified, password: "123456", sponsor: sponsor))
     user.qualifications << Qualification.uname(["empreendedor", "elite", "safira", "rubi", "esmeralda", "diamante", "blue_diamond", "red_diamond"].sample)
     user.save
@@ -152,8 +152,7 @@ if Rails.env.development?
   create_withdraw(root)
 
   # Childrens from root
-  childrens = 2 # Random.rand(10...20)
-  childrens.times do
+  10.times do
     attrs = FactoryBot.attributes_for(:user, :actived, :verified, password: "123456", sponsor: root)
     sponsored = User.new(attrs)
     sponsored.qualifications << Qualification.uname(["empreendedor", "elite", "safira", "rubi", "esmeralda", "diamante", "blue_diamond", "red_diamond"].sample)

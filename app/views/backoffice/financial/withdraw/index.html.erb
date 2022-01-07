@@ -11,7 +11,7 @@
             <h6 class="card-title">
               <span>Saldo disponivel</span>
             </h6>
-            <h3>R$ 10.000,00</h3>
+            <h3><%= currency_formatted(current_user.wallet.balance) %></h3>
           </div>
           <div class="col-lg">
             <form name="form" class="form-withdraw" action="<%= backoffice_financial_withdraw_index_path %>">
@@ -47,11 +47,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td colspan="9">
-                <p class="text-center m-0">Você ainda não fez nenhuma solicitação</p>
-              </td>
-            </tr>
+            <% if @records.empty? %>
+              <tr>
+                <td colspan="7">
+                  <p class="text-center m-0">Você ainda não fez nenhuma solicitação</p>
+                </td>
+              </tr>
+            <% else %>
+              <% @records.each do |withdraw| %>
+                <% presenter(withdraw) do |_presenter| %>
+                  <tr>
+                    <td><%= _presenter.created_at_formatted %></td>
+                    <td><%= _presenter.bank_account.try(:document_number) %></td>
+                    <td><%= _presenter.bank_account.try(:bank_name) %></td>
+                    <td><%= _presenter.bank_account.try(:account_type) %></td>
+                    <td><%= _presenter.bank_account.try(:holder_name) %></td>
+                    <td><%= _presenter.bank_account.try(:branch_number) %></td>
+                    <td><%= _presenter.bank_account.try(:account_number) %></td>
+                    <td><%= _presenter.balance_formatted %></td>
+                    <td>
+                      <% if _presenter.approved %>
+                        <label class="badge rounded-pill bg-success">Aprovado</label>
+                      <% else %>
+                        <label class="badge rounded-pill bg-danger">Negado</label>
+                      <%- end %>
+                    </td>
+                  </tr>
+                <%- end %>
+              <%- end %>
+            <% end %>
           </tbody>
         </table>
       </div>

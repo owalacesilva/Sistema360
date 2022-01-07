@@ -46,8 +46,17 @@ RSpec.describe CommissionsPaymentService do
       expect(service.result[:total_amount]).to eq 260
     end
 
-    it "is expected that user points is empty" do
-      expect(user.total_amount_points).to eq 260
+    context "with user values testing only" do
+      before { service }
+
+      it "is expected that user points is empty" do
+        expect(user.total_amount_points).to eq 0
+      end
+
+      it "is expected that user wallet balance is equal to 260" do
+        service
+        expect(user.wallet.balance).to eq 260
+      end
     end
   end
 

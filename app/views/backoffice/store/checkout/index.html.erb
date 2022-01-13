@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
       <div class="col-md-7">
         <div class="w-100 text-center py-3">
-          <h2 class="font-weight-bold m-0">Pedido #1605</h2>
+          <h2 class="font-weight-bold m-0">Pedido #<%= @order.number %></h2>
         </div>
         <div class="pb-3 py-md-0">
           <div class="card shadow-sm mb-3" style="overflow:hidden">
@@ -42,7 +42,7 @@
           <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-sm-between mb-3" style="font-size:18px">
             <div class="card shadow-sm text-center py-2 px-5 mb-3">
               <strong>Subtotal</strong>
-              <span><%= number_to_currency(@cart.sub_total) %></span>
+              <span><%= number_to_currency(@order.item_total) %></span>
             </div>
             <div class="card shadow-sm text-center py-2 px-5 mb-3">
               <strong>Frete</strong>
@@ -50,7 +50,7 @@
             </div>
             <div class="card shadow-sm text-center py-2 px-5 mb-3">
               <strong>Total</strong>
-              <span><%= number_to_currency(@cart.sub_total) %></span>
+              <span><%= number_to_currency(@order.total) %></span>
             </div>
           </div>
         </div>

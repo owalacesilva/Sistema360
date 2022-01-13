@@ -5,6 +5,8 @@ class Order < ApplicationRecord
 
   has_many :items, class_name: "OrderItem", autosave: true, dependent: :destroy
 
+  enum status: { created: "created", hold: "hold", paid: "paid" }, _default: "created"
+
   validates :number, presence: true
   validates :reference_date, presence: true
   validates :status, presence: true

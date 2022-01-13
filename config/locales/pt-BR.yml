@@ -34,6 +34,11 @@ pt-BR:
         country: País
         password: Senha
         password_confirmation: Digite novamente a senha
+      order:
+        status:
+          created: Criado
+          hold: Aguardando Pagamento
+          paid: Pago
     errors:
       messages:
         record_invalid: "Erro ao salvar recurso: %{errors}"

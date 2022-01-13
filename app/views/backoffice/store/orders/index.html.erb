@@ -44,9 +44,13 @@
                 <tr>
                   <td><%= _presenter.number %></td>
                   <td><%= _presenter.reference_date_formatted %></td>
-                  <td><%= _presenter.status_formatted %></td>
+                  <td>
+                    <span class="badge rounded-pill bg-success">
+                      <%= _presenter.status_formatted %>
+                    </span>
+                  </td>
                   <td><%= _presenter.total_formatted %></td>
-                  <td><%= link_to "Visualizar", "#", class: "btn btn-sm btn-dark" %></td>
+                  <td><%= link_to "Visualizar", backoffice_store_order_path(order), class: "btn btn-sm btn-dark" %></td>
                 </tr>
               <%- end %>
             <%- end %>

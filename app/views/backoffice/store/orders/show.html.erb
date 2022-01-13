@@ -1,2 +1,269 @@
-<h1>Backoffice::Store::Orders#show</h1>
-<p>Find me in app/views/backoffice/store/orders/show.html.erb</p>
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'orders' } do %>
+  <% presenter(@order) do |_presenter| %>
+    <div id="page-dashboard" class="container-fluid mt-3">
+      <div class="page-header">
+        <%= fa_icon "calendar fw" %>
+        <span>Visualizar pedido #<%= _presenter.number %></span>
+      </div>
+      <div class="card mb-4 card-filter">
+        <div class="card-body pt-2 px-2 pb-0">
+          <a target="_blank" class="mb-2 mr-2 btn btn-primary" href="/"><i class="fal fa-fw fa-print"></i> Imprimir</a>
+          <a target="_blank" class="mb-2 mr-2 btn btn-success" href="/"><i class="fal fa-fw fa-credit-card-front"></i> Efetuar Pagamento</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-xl-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-clipboard-list-check"></i> Dados do Pedido</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Número:</strong>
+                  <span class="text-right">#<%= _presenter.number %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Data:</strong>
+                  <span class="text-right"><%= _presenter.reference_date_formatted %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Status:</strong>
+                  <span class="text-right">
+                    <span class="badge rounded-pill bg-success">
+                      <%= _presenter.status_formatted %>
+                    </span>
+                  </span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Valor:</strong>
+                  <span class="text-right"><%= _presenter.total_formatted %></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-map-marked-alt"></i> Endereço de Cobrança</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Destinatário:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.first_name %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>CEP:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.postal_code %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Endereço:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.street_address %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Complemento:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.recipient %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Bairro:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.neighborhood %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Cidade / UF:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.city %>/<%= _presenter.billing_address.state %></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-map-marked-alt"></i> Endereço de Entrega</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Destinatário:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.first_name %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>CEP:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.postal_code %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Endereço:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.street_address %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Complemento:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.recipient %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Bairro:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.neighborhood %></span>
+                </li>
+                <li class="px-0 list-group-item d-flex justify-content-between">
+                  <strong>Cidade / UF:</strong>
+                  <span class="text-right"><%= _presenter.billing_address.city %>/<%= _presenter.billing_address.state %></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-file-invoice-dollar"></i> Informações de Pagamento</div>
+            <div class="card-body">
+              <p>Nenhuma informação disponível.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-shipping-timed"></i> Informações de Entrega</div>
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-lg-4">
+                  <strong>Forma de envio escolhida:</strong> <br />
+                  Retirar na Empresa
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="rastreio" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Rastreio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              </div>
+              <div class="modal-body">
+                <div id="contentRastreio"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-3">
+        <div class="card-header h5"><i class="fal fa-fw fa-list-ol"></i> Itens do Pedido</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th colspan="2" id="ordenarNome">
+                    <span style="cursor: pointer;">Nome <i class="fa fa-sort" aria-hidden="true"></i></span>
+                  </th>
+                  <th class="text-right">Quantidade</th>
+                  <th class="text-right">Peso Unitário</th>
+                  <th class="text-right">Pontos Graduação</th>
+                  <th class="text-right">Pontos Unilevel</th>
+                  <th class="text-right">Valor Unitário</th>
+                  <th class="text-right">Valor Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @order.items.each do |item| %>
+                  <tr>
+                    <td><%= item.id %></td>
+                    <td colspan="2" class="text-uppercase"><%= item.product.title %></td>
+                    <td class="text-right"><%= item.quantity %></td>
+                    <td class="text-right"><%= item.product.weigth %></td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right"><%= number_to_currency(item.price) %></td>
+                    <td class="text-right"><%= number_to_currency(item.cost_price) %></td>
+                  </tr>
+                <%- end %>
+                <tr>
+                  <td colspan="4" class="text-right"><strong>Totais</strong></td>
+                  <td class="text-right"><strong>0</strong></td>
+                  <td class="text-right"><strong>0</strong></td>
+                  <td class="text-right"><strong>0</strong></td>
+                  <td colspan="2"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table mt-3">
+              <tbody>
+                <tr>
+                  <th>Valor dos Produtos</th>
+                  <th>Valor da Entrega</th>
+                  <th>Valor do Desconto</th>
+                  <th>Valor Total</th>
+                </tr>
+                <tr>
+                  <td><%= number_to_currency(@order.item_total) %></td>
+                  <td><%= number_to_currency(@order.shipment_total) %></td>
+                  <td><%= number_to_currency(@order.discount_total) %></td>
+                  <td><%= number_to_currency(@order.total) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-list"></i> Status do Pedido</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between px-0">
+                    <div class="w-50 pr-3"><i class="fal fa-fw fa-clock"></i> Em 13/01/2022 às 02:19:12</div>
+                    <div>Pedido Realizado</div>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between px-0">
+                    <div class="w-50 pr-3"><i class="fal fa-fw fa-clock"></i> Em 13/01/2022 às 02:19:12</div>
+                    <div>Aguardando Pagamento</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm mb-3">
+            <div class="card-header h5"><i class="fal fa-fw fa-comments"></i> Comentários</div>
+            <div class="card-body">
+              <div class="text-center mb-3">
+                <button class="btn btn-success  data-toggle="modal" data-target="#comentario"><i class="fal fa-fw fa-comment-plus"></i> Incluir Comentário</button>
+              </div>
+              <p>Não há comentários para este pedido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="comentario" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Incluir Comentário</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form method="post" action="/">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="comentario">Comentário</label>
+                  <textarea id="comentario" class="form-control" name="comentario" rows="5" required=""></textarea>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-info">Adicionar comentário</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+<%- end %>

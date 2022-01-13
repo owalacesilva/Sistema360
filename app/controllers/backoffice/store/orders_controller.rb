@@ -4,6 +4,7 @@ class Backoffice::Store::OrdersController < Backoffice::BackofficeController
   end
 
   def show
+    @order = current_user.orders.find(params[:id])
   end
 
   def destroy

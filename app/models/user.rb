@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :points, class_name: "UserPoint", dependent: :destroy
   has_many :point_records, class_name: "UserPointRecord", dependent: :destroy
   has_many :point_distributions, class_name: "PointDistribution", dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_many :user_graduations, dependent: :destroy
   has_many :user_qualifications, dependent: :destroy
   has_many :graduations, through: :user_graduations

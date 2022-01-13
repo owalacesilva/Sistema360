@@ -5,7 +5,7 @@ class CreateCarts < ActiveRecord::Migration[6.1]
       t.timestamps null: false
 
       # Cart's details
-      t.decimal :total, precision: 10, scale: 2, null: false
+      t.decimal :total, precision: 10, scale: 2, null: false, default: 0.0
 
       t.references :user, null: false, foreign_key: { to_table: :users, on_delete: :cascade, on_update: :cascade }
     end

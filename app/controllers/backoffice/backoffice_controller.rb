@@ -14,8 +14,8 @@ class Backoffice::BackofficeController < ApplicationController
       end
     end
 
-    if session[:cart_id] = nil
-      @current_cart = Cart.create
+    if session[:cart_id] == nil
+      @current_cart = Cart.create(user: current_user, total: 0)
       session[:cart_id] = @current_cart.id
     end
   end

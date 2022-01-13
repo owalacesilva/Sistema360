@@ -93,7 +93,10 @@
                     </ul>
                     <div class="card-body">
                       <div class="d-grid gap-2 mb-3">
-                        <%= link_to "Adicionar ao carrinho", backoffice_store_shipping_path, class: "btn btn-success" %>
+                        <%= form_tag backoffice_store_cart_items_path do %>
+                          <%= hidden_field_tag :product_id, product.id %>
+                          <button type="submit" class="btn btn-success">Adicionar ao carrinho</button>
+                        <%- end %>
                       </div>
                       <div class="text-center">
                         <%= link_to backoffice_store_shipping_path, class: "card-link" do %>

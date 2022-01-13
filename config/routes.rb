@@ -32,8 +32,12 @@ Rails.application.routes.draw do
 
     namespace :store do
       resources :products, only: [:index, :show]
+      resources :cart_items, only: [:create, :add_quantity, :reduce_quantity, :destroy] do
+        post :add_quantity, on: :member
+        post :reduce_quantity, on: :member
+      end
       get "shipping", controller: :shipping, action: :index, as: :shipping
-      get "cart", controller: :cart, action: :index, as: :cart
+      get "cart", controller: :cart, action: :show, as: :cart
       get "confirmation", controller: :confirmation, action: :index, as: :confirmation
       get "checkout", controller: :checkout, action: :index, as: :checkout
     end

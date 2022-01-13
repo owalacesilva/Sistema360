@@ -2,12 +2,12 @@
   <div id="page-dashboard" class="container-fluid mt-3">
     <div class="page-header">
       <%= fa_icon "shopping-cart fw" %>
-      <span>Cofirmação do Pedido</span>
+      <span>Meu Carrinho</span>
     </div>
     <div class="container-fluid">
       <div class="d-flex flex-wrap justify-content-between">
-        <%= link_to "Voltar", backoffice_store_cart_path, class: "btn btn-outline-secondary mb-2" %>
-        <%= link_to "Finalizar pedido", backoffice_store_checkout_path, class: "btn btn-success mb-2" %>
+        <%= link_to "Escolher mais produtos", backoffice_store_products_path, class: "btn btn-outline-secondary mb-2" %>
+        <%= link_to "Continuar", backoffice_store_confirmation_path, class: "btn btn-success mb-2" %>
       </div>
       <div class="card shadow-sm mb-3">
         <div class="card-body">
@@ -42,8 +42,14 @@
                 <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Quantidade</strong></div>
                 <form method="POST" action="" data-dashlane-rid="1e005f5c1b75139b" data-form-type="other">
                   <div class="form-row">
+                    <div class="col-3">
+                      <%= link_to "Add", add_quantity_backoffice_store_cart_item_path(line_item), method: :post %>
+                    </div>
                     <div class="col-6">
                       <input type="text" class="form-control form-control-sm" value="<%= line_item.quantity %>" readonly />
+                    </div>
+                    <div class="col-3">
+                      <%= link_to "Reduce", reduce_quantity_backoffice_store_cart_item_path(line_item), method: :post %>
                     </div>
                   </div>
                 </form>
@@ -107,8 +113,8 @@
           </ul>
         </div>
         <div class="d-flex flex-wrap justify-content-between">
-          <%= link_to "Voltar", backoffice_store_cart_path, class: "btn btn-outline-secondary mb-2" %>
-          <%= link_to "Finalizar pedido", backoffice_store_checkout_path, class: "btn btn-success mb-2" %>
+          <%= link_to "Escolher mais produtos", backoffice_store_products_path, class: "btn btn-outline-secondary mb-2" %>
+          <%= link_to "Continuar", backoffice_store_confirmation_path, class: "btn btn-success mb-2" %>
         </div>
       </div>
     </div>

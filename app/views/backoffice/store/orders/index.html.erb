@@ -1,0 +1,62 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: 'orders' } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "calendar fw" %>
+      <span>Meus Pedidos</span>
+    </div>
+    <div class="card mb-3">
+      <h6 class="card-header">
+        <%= fa_icon "filter fw" %><span>Filtro</span>
+      </h6>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <form>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Procurar</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" cname="name" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6 text-end">
+            <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" width="10%">Número</th>
+              <th scope="col">Data do pedido</th>
+              <th scope="col">Status</th>
+              <th scope="col">Valor</th>
+              <th scope="col" width="5%">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <% presenter(order) do |_presenter| %>
+                <tr>
+                  <td><%= _presenter.number %></td>
+                  <td><%= _presenter.reference_date_formatted %></td>
+                  <td>
+                    <span class="badge rounded-pill bg-success">
+                      <%= _presenter.status_formatted %>
+                    </span>
+                  </td>
+                  <td><%= _presenter.total_formatted %></td>
+                  <td><%= link_to "Visualizar", backoffice_store_order_path(order), class: "btn btn-sm btn-dark" %></td>
+                </tr>
+              <%- end %>
+            <%- end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- end %>

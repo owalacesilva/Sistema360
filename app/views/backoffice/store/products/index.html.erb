@@ -4,74 +4,71 @@
       <%= fa_icon "shopping-cart fw" %>
       <span>Loja Virtual</span>
     </div>
-    <div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <h4>Mais vendidos</h4>
-        </div>
-      </div>
-    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-3">
+          <div id="shopping-cart" class="p-2">
+            <div class="rounded notEmptyCart p-3" style="background-color: rgba(0, 0, 0, 0.075);">
+              <div class="fs-3"><span><%= number_to_currency(@cart.sub_total) %></span></div>
+              <div><strong>Total de Itens:</strong> <span><%= @cart.items.count %></span></div>
+              <hr />
+              <div class="d-flex justify-content-between text-center">
+                <div>
+                  <strong class="d-block">Graduação</strong>
+                  <span id="totalGraduacao">0,00</span>
+                </div>
+                <div>
+                  <strong class="d-block">Unilevel</strong>
+                  <span id="totalUnilevel">0,00</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= link_to backoffice_store_cart_path, class: "btn d-block btn-secondary mt-3" do %>
+                Meu Carrinho
+              <%- end %>
+            </div>
+            <div>
+              <%= link_to backoffice_store_orders_path, class: "btn d-block btn-outline-secondary mt-3" do %>
+                Meus Pedidos
+              <%- end %>
+            </div>
+            <div class="rounded mt-3 p-3" style="background-color: rgba(0, 0, 0, 0.075);">
+              <strong>Forma de entrega:</strong>
+              <p>Retirar na Sede da Empresa</p>
+              <a href="/" class="btn d-block btn-secondary mt-2"><i class="fal fa-fw fa-shipping-fast"></i> Alterar entrega</a>
+            </div>
+          </div>
           <div class="card">
             <div class="card-header">
               Categorias
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Barbearia</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Capilar</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Cosmêticos</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Magnéticos</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Tourneira Gourmet</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Perfumaria</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Purificador de Água</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Óleos Essenciais</span>
-                <%- end %>
-              </li>
+              <% @categories.each do |category| %>
+                <li class="list-group-item">
+                  <%= link_to backoffice_store_products_path(cat: category.name) do %>
+                    <%= fa_icon "minus fw" %>
+                    <span><%= category.display_name %></span>
+                  <%- end %>
+                </li>
+              <%- end %>
             </ul>
           </div>
         </div>
         <div class="col-9">
+          <div class="card mb-4 card-filter">
+            <div class="card-body pt-2 px-2 pb-0 d-flex flex-wrap">
+              <form action="/" method="post" class="flex-grow-1 mr-md-3 mb-2">
+                <div class="input-group" style="max-width: 600px;">
+                  <input type="text" name="nome" id="nome" class="form-control" placeholder="Buscar produto" />
+                  <span class="input-group-append">
+                    <button class="btn btn-secondary" type="submit"><i class="far fa-search"></i></button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <h4>Mais vendidos</h4>
           <div class="row">
             <% @products.each do |product| %>
               <% presenter(product) do |_presenter| %>
@@ -92,10 +89,13 @@
                       <li class="list-group-item"><strong>Pontos Unilevel:</strong> <%= _presenter.point_amount_formatted -%></li>
                     </ul>
                     <div class="card-body">
-                      <div class="d-grid gap-2 mb-3">
-                        <%= form_tag backoffice_store_cart_items_path do %>
+                      <div class="d-flex gap-2 mb-3">
+                        <%= form_tag backoffice_store_cart_items_path, class: "text-center" do %>
                           <%= hidden_field_tag :product_id, product.id %>
-                          <button type="submit" class="btn btn-success">Adicionar ao carrinho</button>
+                          <div class="input-group">
+                            <%= number_field_tag :quantity, 0, class: "form-control", min: 0, max: 100 %>
+                            <button type="submit" class="btn btn-success">Adicionar</button>
+                          </div>
                         <%- end %>
                       </div>
                       <div class="text-center">

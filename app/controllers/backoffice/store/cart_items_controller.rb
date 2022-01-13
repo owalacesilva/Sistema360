@@ -5,11 +5,11 @@ class Backoffice::Store::CartItemsController < Backoffice::BackofficeController
 
     if current_cart.items.include?(chosen_product)
       @cart_item = current_cart.items.find_by(product_id: chosen_product.id)
-      @cart_item.quantity += 1
+      @cart_item.quantity += params[:quantity]
     else
       @cart_item = CartItem.new
       @cart_item.cart = current_cart
-      @cart_item.quantity = 1
+      @cart_item.quantity = params[:quantity]
       @cart_item.product = chosen_product
     end
 

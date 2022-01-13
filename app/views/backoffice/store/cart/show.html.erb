@@ -29,15 +29,20 @@
             <% @cart.items.each do |line_item| %>
               <div class="row mb-3 pb-3 ">
                 <div class="col-12 col-md-6 d-flex">
-                  <div class="mr-3 d-none d-md-block">
+                  <div class="me-3 d-none d-md-block">
                     <%= image_tag "kit-product", class: "rounded shadow-sm border", width: "75", height: "75", alt: line_item.product.title, title: line_item.product.title %>
                   </div>
                   <div>
-                    <strong><%= line_item.product.title %></strong>
+                    <p class="mb-1 fs-6">
+                      <%= line_item.product.title %>
+                    </p>
                     <div class="text-secondary" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Pontuação do produto">
-                      <small>
-                      <%= fa_icon "product-hunt fw" %><strong>Graduação </strong>0,00 pts | <strong>Unilevel </strong>0,00 pts
-                      </small>
+                      <p class="my-0">
+                        <strong>Unilevel: </strong>0,00 pts
+                      </p>
+                      <p class="my-0">
+                        <strong>Graduação: </strong>0,00 pts
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -47,19 +52,11 @@
                 </div>
                 <div class="col-12 col-md-2 order-3 order-md-2">
                   <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Quantidade</strong></div>
-                  <form method="POST" action="" data-dashlane-rid="1e005f5c1b75139b" data-form-type="other">
-                    <div class="form-row">
-                      <div class="col-3">
-                        <%= link_to "Add", add_quantity_backoffice_store_cart_item_path(line_item), method: :post %>
-                      </div>
-                      <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" value="<%= line_item.quantity %>" readonly />
-                      </div>
-                      <div class="col-3">
-                        <%= link_to "Reduce", reduce_quantity_backoffice_store_cart_item_path(line_item), method: :post %>
-                      </div>
-                    </div>
-                  </form>
+                  <div class="input-group" style="max-width: 115px;">
+                    <%= link_to "+", add_quantity_backoffice_store_cart_item_path(line_item), class: "btn btn-success", method: :post %>
+                    <%= text_field_tag nil, line_item.quantity, class: "form-control text-center", readonly: true %>
+                    <%= link_to "-", reduce_quantity_backoffice_store_cart_item_path(line_item), class: "btn btn-success", method: :post %>
+                  </div>
                 </div>
                 <div class="col-6 col-md-2 order-2 order-md-3">
                   <div class="d-lg-none text-secondary mt-2"><strong class="d-block text-truncate">Subtotal</strong></div>

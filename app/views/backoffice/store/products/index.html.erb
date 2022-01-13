@@ -91,7 +91,7 @@
                     <div class="card-body">
                       <div class="d-flex gap-2 mb-3">
                         <%= form_tag backoffice_store_cart_items_path, class: "text-center" do %>
-                            <%= hidden_field_tag :product_id, product.id %>
+                          <%= hidden_field_tag :product_id, product.id %>
                           <div class="input-group">
                             <%= number_field_tag :quantity, 0, class: "form-control", min: 0, max: 100 %>
                             <button type="submit" class="btn btn-success">Adicionar</button>

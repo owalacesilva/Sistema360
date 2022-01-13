@@ -11,6 +11,11 @@
           <div class="dropdown">
             <%= link_to backoffice_store_cart_path, class: "nav-link text-dark", role: "button", title: "Meu Carrinho" do %>
               <%= fa_icon "shopping-cart fw lg" %>
+              <% unless @current_cart.items.empty? %>
+                <span class="position-absolute start-80 translate-middle badge rounded-pill bg-danger">
+                  <%= @current_cart.items.count %>
+                </span>
+              <%- end %>
             <%- end %>
           </div>
           <div class="dropdown notifications">

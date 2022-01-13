@@ -8,9 +8,14 @@
           </a>
         </div>
         <div class="d-flex flex-grow-1 flex-md-grow-0 justify-content-between justify-content-sm-end pl-2 pt-2 pt-md-0">
+          <div class="dropdown">
+            <%= link_to backoffice_store_cart_path, class: "nav-link text-dark", role: "button", title: "Meu Carrinho" do %>
+              <%= fa_icon "shopping-cart fw lg" %>
+            <%- end %>
+          </div>
           <div class="dropdown notifications">
             <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Notificações">
-              <%= fa_icon "bell fw" %> <div class="badge badge-pill badge-danger d-none notification-count"></div>
+              <%= fa_icon "bell fw lg" %> <div class="badge badge-pill badge-danger d-none notification-count"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-end notifications-dropdown shadow">
               <div class="notifications-dropdown notification-area">
@@ -25,7 +30,7 @@
           </div>
           <div class="dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLinkIdiomas" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Alterar idioma">
-              <%= fa_icon "globe fw" %>
+              <%= fa_icon "globe fw lg" %>
               <span class="d-none d-md-inline">Português</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdownMenuLinkIdiomas">

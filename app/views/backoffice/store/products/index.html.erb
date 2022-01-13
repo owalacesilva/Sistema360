@@ -4,74 +4,75 @@
       <%= fa_icon "shopping-cart fw" %>
       <span>Loja Virtual</span>
     </div>
-    <div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <h4>Mais vendidos</h4>
-        </div>
-      </div>
-    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-3">
+          <div id="shopping-cart" class="p-2">
+            <div class="rounded emptyCart d-none p-3" style="background-color: rgba(0, 0, 0, 0.075);">
+              <p class="h6"><i class="fa fa-fw fa-exclamation-circle"></i> Ops! Seu carrinho está vazio</p>
+              <small>Para inserir produtos no seu carrinho, navegue pela loja ou utilize a busca do site ao lado.</small>
+            </div>
+            <div class="rounded notEmptyCart p-3" style="background-color: rgba(0, 0, 0, 0.075);">
+              <div class="cartInfo_price"><span id="valorPedido"><%= number_to_currency(@cart.sub_total) %></span></div>
+              <div class="cartInfo_itens"><strong>Total de Itens:</strong> <span id="totalItens"><%= @cart.items.count %></span></div>
+              <hr />
+              <div class="d-flex justify-content-between text-center">
+                <div>
+                  <strong class="d-block">Graduação</strong>
+                  <small><span id="totalGraduacao">0,00</span></small>
+                </div>
+                <div>
+                  <strong class="d-block">Unilevel</strong>
+                  <small><span id="totalUnilevel">0,00</span></small>
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= link_to backoffice_store_cart_path, class: "btn d-block btn-info mt-3" do %>
+                <i class="fal fa-fw fa-shopping-cart"></i> Meu Carrinho
+              <%- end %>
+            </div>
+            <div>
+              <%= link_to backoffice_store_orders_path, class: "btn d-block btn-outline-secondary mt-3" do %>
+                <i class="fal fa-fw fa-boxes"></i> Meus Pedidos
+              <%- end %>
+            </div>
+            <div class="rounded mt-3 p-3" style="background-color: rgba(0, 0, 0, 0.075);">
+              <strong>Forma de entrega:</strong>
+              <p>Retirar na Sede da Empresa</p>
+              <a href="/" class="btn d-block btn-secondary mt-2"><i class="fal fa-fw fa-shipping-fast"></i> Alterar entrega</a>
+            </div>
+          </div>
           <div class="card">
             <div class="card-header">
               Categorias
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Barbearia</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Capilar</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Cosmêticos</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Magnéticos</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Tourneira Gourmet</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Perfumaria</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Purificador de Água</span>
-                <%- end %>
-              </li>
-              <li class="list-group-item">
-                <%= link_to root_path do %>
-                  <%= fa_icon "minus fw" %>
-                  <span>Óleos Essenciais</span>
-                <%- end %>
-              </li>
+              <% @categories.each do |category| %>
+                <li class="list-group-item">
+                  <%= link_to backoffice_store_products_path(cat: category.name) do %>
+                    <%= fa_icon "minus fw" %>
+                    <span><%= category.display_name %></span>
+                  <%- end %>
+                </li>
+              <%- end %>
             </ul>
           </div>
         </div>
         <div class="col-9">
+          <div class="card mb-4 card-filter">
+            <div class="card-body pt-2 px-2 pb-0 d-flex flex-wrap">
+              <form action="/" method="post" class="flex-grow-1 mr-md-3 mb-2">
+                <div class="input-group" style="max-width: 600px;">
+                  <input type="text" name="nome" id="nome" class="form-control" placeholder="Buscar produto" />
+                  <span class="input-group-append">
+                    <button class="btn btn-secondary" type="submit"><i class="far fa-search"></i></button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <h4>Mais vendidos</h4>
           <div class="row">
             <% @products.each do |product| %>
               <% presenter(product) do |_presenter| %>

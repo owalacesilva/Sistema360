@@ -7,8 +7,9 @@
     <div class="container-fluid">
       <% if @cart.items.empty? %>
         <div class="text-center">
-          <h5>Seu carrinho está vazio</h5>
-          <%= link_to "Adicionar produto", backoffice_store_products_path, class: "btn btn-success mt-2" %>
+          <h5>Ops! Seu carrinho está vazio</h5>
+          <p>Para inserir produtos no seu carrinho, navegue pela loja ou utilize a busca do site ao lado.</p>
+          <%= link_to "Ir para loja", backoffice_store_products_path, class: "btn btn-success mt-2" %>
         </div>
       <% else %>
         <div class="d-flex flex-wrap justify-content-between">

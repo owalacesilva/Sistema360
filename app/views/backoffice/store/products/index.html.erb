@@ -8,33 +8,29 @@
       <div class="row">
         <div class="col-3">
           <div id="shopping-cart" class="p-2">
-            <div class="rounded emptyCart d-none p-3" style="background-color: rgba(0, 0, 0, 0.075);">
-              <p class="h6"><i class="fa fa-fw fa-exclamation-circle"></i> Ops! Seu carrinho está vazio</p>
-              <small>Para inserir produtos no seu carrinho, navegue pela loja ou utilize a busca do site ao lado.</small>
-            </div>
             <div class="rounded notEmptyCart p-3" style="background-color: rgba(0, 0, 0, 0.075);">
-              <div class="cartInfo_price"><span id="valorPedido"><%= number_to_currency(@cart.sub_total) %></span></div>
-              <div class="cartInfo_itens"><strong>Total de Itens:</strong> <span id="totalItens"><%= @cart.items.count %></span></div>
+              <div class="fs-3"><span><%= number_to_currency(@cart.sub_total) %></span></div>
+              <div><strong>Total de Itens:</strong> <span><%= @cart.items.count %></span></div>
               <hr />
               <div class="d-flex justify-content-between text-center">
                 <div>
                   <strong class="d-block">Graduação</strong>
-                  <small><span id="totalGraduacao">0,00</span></small>
+                  <span id="totalGraduacao">0,00</span>
                 </div>
                 <div>
                   <strong class="d-block">Unilevel</strong>
-                  <small><span id="totalUnilevel">0,00</span></small>
+                  <span id="totalUnilevel">0,00</span>
                 </div>
               </div>
             </div>
             <div>
-              <%= link_to backoffice_store_cart_path, class: "btn d-block btn-info mt-3" do %>
-                <i class="fal fa-fw fa-shopping-cart"></i> Meu Carrinho
+              <%= link_to backoffice_store_cart_path, class: "btn d-block btn-secondary mt-3" do %>
+                Meu Carrinho
               <%- end %>
             </div>
             <div>
               <%= link_to backoffice_store_orders_path, class: "btn d-block btn-outline-secondary mt-3" do %>
-                <i class="fal fa-fw fa-boxes"></i> Meus Pedidos
+                Meus Pedidos
               <%- end %>
             </div>
             <div class="rounded mt-3 p-3" style="background-color: rgba(0, 0, 0, 0.075);">
@@ -93,10 +89,13 @@
                       <li class="list-group-item"><strong>Pontos Unilevel:</strong> <%= _presenter.point_amount_formatted -%></li>
                     </ul>
                     <div class="card-body">
-                      <div class="d-grid gap-2 mb-3">
-                        <%= form_tag backoffice_store_cart_items_path do %>
-                          <%= hidden_field_tag :product_id, product.id %>
-                          <button type="submit" class="btn btn-success">Adicionar ao carrinho</button>
+                      <div class="d-flex gap-2 mb-3">
+                        <%= form_tag backoffice_store_cart_items_path, class: "text-center" do %>
+                            <%= hidden_field_tag :product_id, product.id %>
+                          <div class="input-group">
+                            <%= number_field_tag :quantity, 0, class: "form-control", min: 0, max: 100 %>
+                            <button type="submit" class="btn btn-success">Adicionar</button>
+                          </div>
                         <%- end %>
                       </div>
                       <div class="text-center">

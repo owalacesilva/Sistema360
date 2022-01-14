@@ -5,6 +5,7 @@ class Backoffice::TicketsController < Backoffice::BackofficeController
   end
 
   def show
+    @ticket = current_user.tickets.find(params[:id])
   end
 
   def new

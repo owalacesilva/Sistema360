@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_185608) do
+ActiveRecord::Schema.define(version: 2022_01_14_045254) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -234,6 +234,19 @@ ActiveRecord::Schema.define(version: 2022_01_12_185608) do
     t.string "unique_name", null: false
   end
 
+  create_table "tickets", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status", null: false
+    t.string "subject", null: false
+    t.text "message"
+    t.text "reply"
+    t.string "department", null: false
+    t.string "priority", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "transactions", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -447,6 +460,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_185608) do
   add_foreign_key "point_distributions", "references"
   add_foreign_key "point_distributions", "users"
   add_foreign_key "products", "product_categories", column: "category_id", on_update: :cascade
+  add_foreign_key "tickets", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "transactions", "references", on_update: :cascade
   add_foreign_key "transactions", "users", column: "origin_user_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "transactions", "users", column: "target_user_id", on_update: :cascade, on_delete: :cascade

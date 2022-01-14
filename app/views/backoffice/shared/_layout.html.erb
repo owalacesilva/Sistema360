@@ -20,7 +20,12 @@
           </div>
           <div class="dropdown notifications">
             <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Notificações">
-              <%= fa_icon "bell fw lg" %> <div class="badge badge-pill badge-danger d-none notification-count"></div>
+              <%= fa_icon "bell fw lg" %>
+              <% unless @current_cart.items.empty? %>
+                <div class="badge rounded-pill bg-secondary notification-count">
+                  <%= @current_cart.items.count %>
+                </div>
+              <%- end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end notifications-dropdown shadow">
               <div class="notifications-dropdown notification-area">

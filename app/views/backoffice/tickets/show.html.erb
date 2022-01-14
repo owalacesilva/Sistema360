@@ -1,74 +1,87 @@
 <%= render layout: "backoffice/shared/layout", locals: { page: "tickets" } do %>
-  <div id="page-dashboard" class="container-fluid mt-3">
-    <div class="page-header">
-      <%= fa_icon "phone-square fw" %>
-      <span>Chamado #<%= @ticket.id %></span>
-    </div>
-    <div class="row">
-      <div class="col-md-8 col-xl-6">
-        <div class="h3 mb-3 border-bottom pb-3">
-          <strong>Assunto:&nbsp;</strong>
-          <span><%= @ticket.subject %></span>
-        </div>
-        <div class="d-flex flex-column">
-          <div class="card shadow-sm mb-3 ">
-            <div class="card-body">
-              <p><%= @ticket.message %></p>
+  <% presenter(@ticket) do |_prensenter| %>
+    <div id="page-dashboard" class="container-fluid mt-3">
+      <div class="page-header">
+        <%= fa_icon "phone-square fw" %>
+        <span>Chamado #<%= @ticket.id %></span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-xl-6">
+          <div class="h3 mb-3 border-bottom pb-3">
+            <strong>Assunto:&nbsp;</strong>
+            <span><%= @ticket.subject %></span>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="card shadow-sm mb-3 ">
+              <div class="card-body">
+                <p><%= @ticket.message %></p>
+              </div>
+              <div class="card-footer">
+                <span>em <%= _prensenter.created_at_formatted %></span>
+              </div>
             </div>
-            <div class="card-footer">
-              <small>em <%= @ticket.created_at %></small>
+            <div class="card shadow-sm mb-3 ">
+              <div class="card-header h5">
+                <%= fa_icon "warning fw" %> Resposta do administrador
+              </div>
+              <div class="card-body">
+                <p><%= @ticket.message %></p>
+              </div>
+              <div class="card-footer">
+                <span>em <%= _prensenter.created_at_formatted %></span>
+              </div>
             </div>
           </div>
-        </div>
-        <%= form_for :ticket, url: backoffice_tickets_path, method: :post, role: "form", class: "form" do |f| %>
-          <div class="card shadow-sm mt-3">
-            <div class="card-body">
-              <div class="form-group mb-3">
-                <%= f.text_area :message, class: "form-control", rows: 5, required: true %>
-              </div>
-              <div class="form-group">
-                <div class="alert alert-info shadow-none">
-                  <i class="fas fa-fw fa-info-circle"></i> <b>Importante</b> <br> 
-                  - Limite de <b>5</b> arquivos por mensagem <br>
-                  - Tamanho máximo por arquivo é de <b>15MB</b> <br>
-                  - Formatos permitidos: <b>JPG, JPEG, PDF, PNG, TXT, DOC, DOCX, XLS, XLSX, PPT, PPTX, PPS</b>                                    
+          <%= form_for :ticket, url: backoffice_tickets_path, method: :post, role: "form", class: "form" do |f| %>
+            <div class="card shadow-sm mt-3">
+              <div class="card-body">
+                <div class="form-group mb-3">
+                  <%= f.text_area :message, class: "form-control", rows: 5, required: true %>
                 </div>
-                <div class="files"></div>
-                <button type="button" class="btn btn-secondary" id="newArquivo">Adicionar novo arquivo</button>
-              </div>
-              <hr>
-              <div class="text-center">
-                <%= f.submit "Responder chamado", class: "btn btn-success" %>
+                <div class="form-group">
+                  <div class="alert alert-info shadow-none">
+                    <i class="fas fa-fw fa-info-circle"></i> <b>Importante</b> <br> 
+                    - Limite de <b>5</b> arquivos por mensagem <br>
+                    - Tamanho máximo por arquivo é de <b>15MB</b> <br>
+                    - Formatos permitidos: <b>JPG, JPEG, PDF, PNG, TXT, DOC, DOCX, XLS, XLSX, PPT, PPTX, PPS</b>                                    
+                  </div>
+                  <div class="files"></div>
+                  <button type="button" class="btn btn-secondary" id="newArquivo">Adicionar novo arquivo</button>
+                </div>
+                <hr>
+                <div class="text-center">
+                  <%= f.submit "Responder chamado", class: "btn btn-success" %>
+                </div>
               </div>
             </div>
-          </div>
-        <%- end %>
-      </div>
-      <div class="col-md-4 col-xl-3">
-        <div class="card shadow-sm">
-          <div class="card-header h5">Informações do Chamado</div>
-          <div class="card-body">
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between">
-                <strong>Data de Abertura</strong>
-                <span class="text-right"><%= @ticket.created_at %></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <strong>Tipo</strong>
-                <span><%= @ticket.department %></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <strong>Status</strong>
-                <span><%= @ticket.status %></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <strong>Prioridade</strong>
-                <span><%= @ticket.priority %></span>
-              </li>
-            </ul>
+          <%- end %>
+        </div>
+        <div class="col-md-4 col-xl-3">
+          <div class="card shadow-sm">
+            <div class="card-header h5">Informações do Chamado</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                  <strong>Data de Abertura</strong>
+                  <span class="text-right"><%= _prensenter.created_at_formatted %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <strong>Tipo</strong>
+                  <span><%= @ticket.department %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <strong>Status</strong>
+                  <span><%= @ticket.status %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <strong>Prioridade</strong>
+                  <span><%= @ticket.priority %></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <%- end %>
 <%- end %>

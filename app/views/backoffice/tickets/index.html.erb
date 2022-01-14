@@ -40,26 +40,28 @@
         <div class="card-body">
           <% @tickets.each do |ticket| %>
             <div class="opened mb-3 px-3 pt-3" style="background-color: #f1f3f5;color: #868e96;">
-              <%= link_to backoffice_ticket_path(ticket) do %>
-                <div class="d-flex flex-wrap justify-content-between">
-                  <div class="mr-3 mb-3">
-                    <strong>#<%= ticket.id %></strong><br>
-                    <small><%= ticket.created_at %></small>
+              <%= link_to backoffice_ticket_path(ticket), style: "text-decoration: none;" do %>
+                <% presenter(ticket) do |_| %>
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <div class="me-3 mb-3">
+                      <strong>#<%= ticket.id %></strong><br>
+                      <small><%= _.created_at_formatted %></small>
+                    </div>
+                    <div class="flex-grow-1 mb-3">
+                      <strong><%= ticket.subject %></strong><br>
+                      <%= ticket.message %>
+                    </div>
+                    <div class="mb-3">
+                      <strong>Status e Prioridade</strong><br>
+                      <span class="text-uppercase badge badge-warning">
+                        <%= ticket.status %>
+                      </span>
+                      <span class="text-uppercase badge badge-danger">
+                        <%= ticket.priority %>
+                      </span>
+                    </div>
                   </div>
-                  <div class="flex-grow-1 mb-3">
-                    <strong><%= ticket.subject %></strong><br>
-                    <%= ticket.message %>
-                  </div>
-                  <div class="mb-3">
-                    <strong>Status e Prioridade</strong><br>
-                    <span class="text-uppercase badge badge-warning">
-                      <%= ticket.status %>
-                    </span>
-                    <span class="text-uppercase badge badge-danger">
-                      <%= ticket.priority %>
-                    </span>
-                  </div>
-                </div>
+                <%- end %>
               <%- end %>
             </div>
           <%- end %>

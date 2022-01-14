@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration[6.1]
       # Ticket's details
       t.string :status, null: false
       t.string :subject, null: false
-      t.text :mensage
+      t.text :message
       t.text :reply
       t.string :department, null: false
       t.string :priority, null: false

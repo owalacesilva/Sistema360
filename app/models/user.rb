@@ -28,6 +28,7 @@ class User < ApplicationRecord
   has_many :graduations, through: :user_graduations
   has_many :qualifications, through: :user_qualifications
   has_many :withdraws, class_name: "Withdraw", through: :wallet
+  has_many :tickets, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

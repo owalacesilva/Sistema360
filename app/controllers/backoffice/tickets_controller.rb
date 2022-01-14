@@ -1,6 +1,7 @@
 class Backoffice::TicketsController < Backoffice::BackofficeController
 
   def index
+    @tickets = current_user.tickets
   end
 
   def show

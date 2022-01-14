@@ -1,8 +1,70 @@
-<%= render layout: 'backoffice/shared/layout', locals: { page: 'tickets' } do %>
-  <div class="container mt-3">
-    <div class="card">
-      <div class="card-body">
+<%= render layout: "backoffice/shared/layout", locals: { page: "tickets" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "phone-square fw" %>
+      <span>Chamados</span>
+    </div>
+    <div class="card card-filter mb-4">
+      <div class="card-body pt-2 px-2 pb-0">
+        <%= link_to new_backoffice_ticket_path, class: "mb-2 mr-2 btn btn-secondary" do %>
+          <span>Abrir um chamado</span>
+        <%- end %>
       </div>
     </div>
+    <% if @tickets.blank? %>
+      <div class="text-center">
+        <h4>Nenhum chamado encontrado</h4>
+      </div>
+    <% else %>
+      <div class="card card-filter mb-4">
+        <div class="card-header">
+          Filtros
+        </div>
+        <div class="card-body pt-2 px-2 pb-0">
+          <form method="post" id="formulario">
+            <div class="form-group mb-2 col-sm-6 col-xl-2">
+              <label for="status" class="form-label">Status</label>
+              <select name="status" id="status" class="form-control">
+                <option value="" selected="selected">Todos os tickets</option>
+                <option value="pending">Pendente</option>
+                <option value="hold">Em Andamento</option>
+                <option value="resolved">Resolvido</option>
+                <option value="canceled">Cancelado</option>
+                <option value="closed">Finalizado</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <% @tickets.each do |ticket| %>
+            <div class="opened px-3 pt-3" style="background-color: #f1f3f5;color: #868e96;">
+              <a title="Visualizar ticket" href="/backoffice/support/ticket/120">
+                <div class="d-flex flex-wrap justify-content-between">
+                  <div class="mr-3 mb-3">
+                    <strong>#<%= ticket.id %></strong><br>
+                    <small><%= ticket.created_at %></small>
+                  </div>
+                  <div class="flex-grow-1 mb-3">
+                    <strong><%= ticket.subject %></strong><br>
+                    <%= ticket.message %>
+                  </div>
+                  <div class="mb-3">
+                    <strong>Status e Prioridade</strong><br>
+                    <span class="text-uppercase badge badge-warning">
+                      <%= ticket.status %>
+                    </span>
+                    <span class="text-uppercase badge badge-danger">
+                      <%= ticket.priority %>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <%- end %>
+        </div>
+      </div>
+    <%- end %>
   </div>
 <%- end %>

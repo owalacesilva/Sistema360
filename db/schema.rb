@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", null: false
     t.string "subject", null: false
-    t.text "mensage"
+    t.text "message"
     t.text "reply"
     t.string "department", null: false
     t.string "priority", null: false

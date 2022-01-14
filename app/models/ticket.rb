@@ -1,5 +1,5 @@
 class Ticket < ApplicationRecord
-  belongs :user, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   enum status: %i[pending hold resolved canceled closed], _default: :pending
 

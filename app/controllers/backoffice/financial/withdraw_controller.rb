@@ -2,7 +2,7 @@ class Backoffice::Financial::WithdrawController < Backoffice::BackofficeControll
   skip_before_action :verify_authenticity_token
 
   def index
-    @records = wallet.withdraws
+    @records = wallet.withdraws.order(created_at: :desc)
   end
 
   def create

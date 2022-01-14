@@ -1,7 +1,7 @@
 class Backoffice::TicketsController < Backoffice::BackofficeController
 
   def index
-    @tickets = current_user.tickets
+    @tickets = current_user.tickets.order(created_at: :desc)
   end
 
   def show

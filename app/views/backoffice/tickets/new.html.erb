@@ -1,2 +1,53 @@
-<h1>Backoffice::Tickets#new</h1>
-<p>Find me in app/views/backoffice/tickets/new.html.erb</p>
+<%= render layout: "backoffice/shared/layout", locals: { page: "tickets" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "phone-square fw" %>
+      <span>Chamados</span>
+    </div>
+    <div class="container mt-3">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <%= form_for :ticket, url: backoffice_tickets_path, method: :post, role: "form", class: "form" do |f| %>
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <div class="form-group mb-3">
+                  <label for="assunto" class="form-label">Assunto</label>
+                  <%= f.text_field :subject, class: "form-control", required: true %>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="descricao" class="form-label">Descrição</label>
+                  <%= f.text_area :message, class: "form-control", rows: 5, required: true %>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6">
+                    <label for="departamento" class="form-label">Tipo</label>
+                    <%= f.select :department, Ticket.departments.keys.map {|key| [key.titleize, key]}, { include_blank: false, prompt: "Selecione um departamento" },
+                      { class: "form-control" } %>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="prioridade" class="form-label">Prioridade</label>
+                    <%= f.select :priority, Ticket.priorities.keys.map {|key| [key.titleize, key]}, { include_blank: false, prompt: "Selecione uma prioridade" },
+                      { class: "form-control" } %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="alert alert-info shadow-none">
+                    <i class="fas fa-fw fa-info-circle"></i> <b>Importante</b> <br> 
+                    - Limite de <b>5</b> arquivos por mensagem <br>
+                    - Tamanho máximo por arquivo é de <b>15MB</b> <br>
+                    - Formatos permitidos: <b>JPG, JPEG, PDF, PNG, TXT, DOC, DOCX, XLS, XLSX, PPT, PPTX, PPS</b>                        
+                  </div>
+                  <div class="arquivos"></div>
+                  <button type="button" class="btn btn-secondary" id="newArquivo" data-dashlane-rid="86f21a25eed71f13" data-dashlane-label="true" data-form-type="other">Adicionar arquivo</button>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <%= f.submit "Abrir o chamado", class: "btn btn-success" %>
+            </div>
+          <%- end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- end %>

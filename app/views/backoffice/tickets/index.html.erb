@@ -39,8 +39,8 @@
       <div class="card shadow-sm mb-3">
         <div class="card-body">
           <% @tickets.each do |ticket| %>
-            <div class="opened px-3 pt-3" style="background-color: #f1f3f5;color: #868e96;">
-              <a title="Visualizar ticket" href="/backoffice/support/ticket/120">
+            <div class="opened mb-3 px-3 pt-3" style="background-color: #f1f3f5;color: #868e96;">
+              <%= link_to backoffice_ticket_path(ticket) do %>
                 <div class="d-flex flex-wrap justify-content-between">
                   <div class="mr-3 mb-3">
                     <strong>#<%= ticket.id %></strong><br>
@@ -60,7 +60,7 @@
                     </span>
                   </div>
                 </div>
-              </a>
+              <%- end %>
             </div>
           <%- end %>
         </div>

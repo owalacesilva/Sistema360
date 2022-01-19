@@ -9,8 +9,8 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
-          regex: "([a-z])+\/([a-z])+"
-          allowed_prefixes: "master,staging,feature/,bugfix/,hotfix/,refactor/,doc/,dependabot/"
-          ignore: "master,develop"
+          regex: '([a-z])+\/([a-z])+'
+          allowed_prefixes: 'master,staging,feature/,bugfix/,hotfix/,refactor/,doc/,dependabot/'
+          ignore: master,develop
           min_length: 5
           max_length: 20

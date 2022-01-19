@@ -58,7 +58,7 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
       
-      - name: Run Brakeman
+      - name: Run Reek
         uses: reviewdog/action-reek@v1
         with:
           reek_version: gemfile

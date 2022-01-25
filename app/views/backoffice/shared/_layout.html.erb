@@ -55,7 +55,9 @@
             <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdownMenuLink">
               <span class="dropdown-item">Olá, <%= current_user.first_name %></span>
               <div class="dropdown-divider d-md-none"></div>
-              <a class="dropdown-item" href="/profile"><%= fa_icon "user fw" %> Perfil</a>
+              <%= link_to backoffice_profile_user_data_path, class: "dropdown-item" do %>
+                <span><%= fa_icon "user fw" %> Perfil</span>
+              <%- end %>
               <a class="dropdown-item" href="/profile/documents"><%= fa_icon "file fw" %> Meus Documentos</a>
               <a class="dropdown-item" href="/profile/bank"><%= fa_icon "university fw" %> Conta Bancária</a>
               <a class="dropdown-item" href="/profile/terms"><%= fa_icon "book fw" %> Termos</a>

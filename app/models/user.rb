@@ -37,8 +37,8 @@ class User < ApplicationRecord
   validates :gender, inclusion: { in: %w[male famale] }
   validates :status, inclusion: { in: %w[actived] }
 
-  before_save :add_user_to_spill_queue, if: Proc.new { |user| user.sponsor? }
-  before_save :create_user_points, :create_user_wallet
+  before_create :add_user_to_spill_queue, if: Proc.new { |user| user.sponsor? }
+  before_create :create_user_points, :create_user_wallet
 
   def point(ref)
     points.find_by(reference: Reference.uname(ref))

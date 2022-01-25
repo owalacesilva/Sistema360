@@ -30,6 +30,11 @@ Rails.application.routes.draw do
       resources :team
     end
 
+    namespace :profile do
+      get "user_data", controller: :user_data, action: :index, as: :user_data
+      post "user_data", controller: :user_data, action: :update, as: :update_user_data
+    end
+
     namespace :store do
       resources :products, only: [:index, :show]
       resources :orders, only: [:index, :show, :destroy]

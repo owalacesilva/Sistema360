@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "total", precision: 10, scale: 2, null: false
+    t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end

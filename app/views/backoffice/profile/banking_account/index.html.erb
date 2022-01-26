@@ -1,0 +1,86 @@
+<%= render layout: 'backoffice/shared/layout', locals: { page: "profile" } do %>
+  <div id="page-dashboard" class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "money fw" %>
+      <span>Conta Bancária</span>
+    </div>
+    <div class="form-signup">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <% flash.each do |name, msg| %>
+            <% if msg.is_a?(String) %>
+              <div class="alert alert-dismissible alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= form_for @user_bank, as: :banking, url: backoffice_profile_update_banking_account_path, method: :post do |f| %>
+            <%= render "users/shared/error_messages", resource: @user_bank %>
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="form-group mb-3 col-md-6">
+                    <%= f.label :bank_code, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.select :bank_code, banking_names_helper, { prompt: "Selecione o banco" }, { class: "form-control", required: true } %>
+                  </div>
+                  <div class="form-group mb-3 col-md-6">
+                    <%= f.label :account_type, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.select :account_type, banking_account_type_helper, { prompt: "Selecione o tipo da conta" }, { class: "form-control", required: true } %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-3 col-sm-8 col-md-4">
+                    <%= f.label :branch_number, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.number_field :branch_number, autofocus: true, class: "form-control", required: true %>
+                  </div>
+                  <div class="form-group mb-3 col-sm-4 col-md-2">
+                    <%= f.label :branch_code, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.number_field :branch_code, class: "form-control", required: true %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-3 col-sm-6 col-md-4">
+                    <%= f.label :account_number, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.number_field :account_number, class: "form-control", required: true %>
+                  </div>
+                  <div class="form-group mb-3 col-sm-3 col-md-2">
+                    <%= f.label :account_code, class: "form-label" %>
+                    <b class="text-danger">*</b>
+                    <%= f.number_field :account_code, class: "form-control", required: true %>
+                  </div>
+                  <div class="form-group mb-3 col-sm-3 col-md-2">
+                    <%= f.label :operation, class: "form-label" %>
+                    <%= f.number_field :operation, class: "form-control", required: false %>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <%= f.label :holder_name, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :holder_name, class: "form-control", required: true %>
+                </div>
+                <div class="form-group mb-3">
+                  <%= f.label :document_number, class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= f.text_field :document_number, class: "form-control", required: true %>
+                </div>
+                <div class="form-group mb-3">
+                  <%= label nil, "Senha de Segurança", class: "form-label" %>
+                  <b class="text-danger">*</b>
+                  <%= password_field nil, :security_password, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+            <div class="text-end">
+              <%= f.submit "Atualizar conta", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- end %>

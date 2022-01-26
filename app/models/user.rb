@@ -60,6 +60,10 @@ class User < ApplicationRecord
     points.sum(&:amount)
   end
 
+  def banking_account
+    bank_account || build_bank_account
+  end
+
   private
 
   def create_user_points

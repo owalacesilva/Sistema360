@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     namespace :profile do
       get "user_data", controller: :user_data, action: :index, as: :user_data
       post "user_data", controller: :user_data, action: :update, as: :update_user_data
+
+      get "banking_account", controller: :banking_account, action: :index, as: :banking_account
+      post "banking_account", controller: :banking_account, action: :update, as: :update_banking_account
     end
 
     namespace :store do

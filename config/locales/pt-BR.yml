@@ -6,6 +6,7 @@ pt-BR:
   activerecord: 
     models:
       user: Usuário
+      user_bank_accounts: Conta Bancária
     attributes:
       user:
         sponsor: Patrocinador
@@ -39,6 +40,17 @@ pt-BR:
           created: Criado
           hold: Aguardando Pagamento
           paid: Pago
+      user_bank_account:
+        bank_code: Nome do Banco
+        bank_name: Nome do Banco
+        account_type: Tipo de Conta
+        branch_number: Número da Agência
+        branch_code: Dígito
+        account_number: Número da Conta
+        account_code: Dígito
+        operation: Operação
+        holder_name: Titular da Conta
+        document_number: CPF/CNPJ
     errors:
       messages:
         record_invalid: "Erro ao salvar recurso: %{errors}"

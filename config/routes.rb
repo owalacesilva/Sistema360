@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
       get "password", controller: :password, action: :index, as: :password
       post "password", controller: :password, action: :update, as: :update_password
+
+      get "security_password", controller: :security_password, action: :index, as: :security_password
+      post "security_password", controller: :security_password, action: :update, as: :update_security_password
     end
 
     namespace :store do

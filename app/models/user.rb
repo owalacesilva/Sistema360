@@ -4,7 +4,8 @@ class User < ApplicationRecord
     actived: "actived"
   }
 
-  attr_accessor :email_confirmation
+  attr_reader :security_password
+  attr_accessor :email_confirmation, :security_password_confirmation
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -34,6 +35,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, uniqueness: true
   validates :email, confirmation: true
+  validates :security_password, confirmation: true
   validates :gender, inclusion: { in: %w[male famale] }
   validates :status, inclusion: { in: %w[actived] }
 
@@ -62,6 +64,11 @@ class User < ApplicationRecord
 
   def banking_account
     bank_account || build_bank_account
+  end
+
+  def security_password=(new_password)
+    @security_password = new_password
+    self.encrypted_security_password = Devise::Encryptor.digest(self.class, @security_password) if @security_password.present?
   end
 
   private

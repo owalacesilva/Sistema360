@@ -35,6 +35,8 @@ pt-BR:
         country: País
         password: Senha
         password_confirmation: Digite novamente a senha
+        security_password: Nova senha de segurança
+        security_password_confirmation: Confirme a nova senha de segurança
       order:
         status:
           created: Criado

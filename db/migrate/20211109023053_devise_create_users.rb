@@ -13,9 +13,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.datetime :verified_at
 
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-      t.string :password,           null: true, default: ""
+      t.string :email,                        null: false,  default: ""
+      t.string :encrypted_password,           null: false,  default: ""
+      t.string :encrypted_security_password,  null: false,  default: ""
+      t.string :passwd,                       null: true,   default: ""
+      t.string :security_passwd,              null: true,   default: ""
 
       ## Recoverable
       t.string   :reset_password_token

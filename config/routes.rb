@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
       get "banking_account", controller: :banking_account, action: :index, as: :banking_account
       post "banking_account", controller: :banking_account, action: :update, as: :update_banking_account
+
+      get "password", controller: :password, action: :index, as: :password
+      post "password", controller: :password, action: :update, as: :update_password
     end
 
     namespace :store do

@@ -1,5 +1,9 @@
 <%= render layout: 'backoffice/shared/layout', locals: { page: 'registration' } do %>
-  <div class="container mt-3">
+  <div id="page-dashboard"  class="container-fluid mt-3">
+    <div class="page-header">
+      <%= fa_icon "user-plus fw" %>
+      <span>Cadastrar indicado</span>
+    </div>
     <div class="form-signup">
       <div class="row">
         <div class="col-md-10 offset-md-1">
@@ -12,7 +16,7 @@
                     <div class="mb-3">
                       <%= f.label :sponsor, class: "form-label" %>
                       <b class="text-danger">*</b>
-                      <%= f.text_field :sponsor, class: "form-control", required: true, readonly: true %>
+                      <%= f.text_field :sponsor, value: current_user.first_name, class: "form-control", required: true, readonly: true %>
                     </div>
                   </div>
                 </div>

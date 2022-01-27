@@ -1,24 +1,24 @@
 <%= render layout: 'backoffice/shared/layout', locals: { page: 'dashboard' } do %>
   <div id="page-dashboard" class="container-fluid mt-3">
     <div class="page-header">
-      <%= fa_icon "calendar fw" %>
-      <span>Dashboard</span>
+      <%= fa_icon "dashboard fw" %>
+      <span>Painel</span>
     </div>
     <div class="card mb-3">
       <div class="card-body pt-2 px-2 pb-0 d-flex align-items-center flex-wrap text-center">
-        <a href="" class="flex-grow-1 flex-md-grow-0 mb-3 mb-md-2 mr-2 btn btn-sm btn-danger" title="Faça seu pedido de ativação">
-          <%= fa_icon "exclamation-triangle fw" %>
+        <%= link_to backoffice_store_products_path, class: "flex-grow-1 flex-md-grow-0 mb-3 mb-md-2 mr-2 btn btn-danger", title: "Faça seu pedido de ativação" do %>
+          <%= fa_icon "exclamation-triangle lg fw" %>
           <strong>Você não está ativo!</strong>
           <span>Clique aqui e faça sua ativação</span>
-        </a>
-        <a href="#" class="copy flex-grow-1 flex-sm-grow-0 mb-3 mb-md-2 mr-2 btn btn-sm btn-link text-dark" data-toggle="tooltip" title="Copiar link para indicação">
-          <%= fa_icon "share-alt fw" %>
+        <%- end %>
+        <a href="#" class="copy flex-grow-1 flex-sm-grow-0 mb-3 mb-md-2 mr-2 btn btn-link text-decoration-none text-dark" data-toggle="tooltip" title="Copiar link para indicação">
+          <%= fa_icon "share-alt lg fw" %>
           <span>Link de Indicação</span>
         </a>
-        <a href="#" class="copy flex-grow-1 flex-sm-grow-0 mb-3 mb-md-2 mr-2 btn btn-sm btn-link text-dark" data-toggle="tooltip" title="Copiar link para loja virtual">
-          <%= fa_icon "shopping-cart fw" %>
-          <span>Minha Loja Virtual</span>
-        </a>
+        <%= link_to backoffice_store_products_path, class: "copy flex-grow-1 flex-sm-grow-0 mb-3 mb-md-2 mr-2 btn btn-link text-decoration-none text-dark" do %>
+          <%= fa_icon "shopping-cart lg fw" %>
+          <span>Ir para Loja</span>
+        <%- end %>
       </div>
     </div>
     <div class="generic-blocks mb-5">

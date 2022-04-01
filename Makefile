@@ -14,3 +14,6 @@ deploy:
 
 up:
 	RAILS_ENV=development bash ./server.sh
+
+dbsetup:
+	rake db:setup && rake db:migrate && rake db:seed

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_01_14_045254) do
 
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
+  create_table "addresses", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.string "longitude"
   end
 
-  create_table "cart_items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "cart_items", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity", default: 0, null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
-  create_table "carts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "carts", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "commission_types", charset: "utf8mb4", force: :cascade do |t|
+  create_table "commission_types", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.string "description"
   end
 
-  create_table "commissions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "commissions", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name", null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["type_id"], name: "index_commissions_on_type_id"
   end
 
-  create_table "graduations", charset: "utf8mb4", force: :cascade do |t|
+  create_table "graduations", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name", null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
   end
 
-  create_table "order_items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "order_items", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity", null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table "orders", charset: "utf8mb4", force: :cascade do |t|
+  create_table "orders", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "payment_methods", charset: "utf8mb4", force: :cascade do |t|
+  create_table "payment_methods", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false
@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.integer "position", default: 0, null: false
   end
 
-  create_table "point_distributions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "point_distributions", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "done", default: false
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_point_distributions_on_user_id"
   end
 
-  create_table "product_categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "product_categories", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.string "tax_code"
   end
 
-  create_table "products", charset: "utf8mb4", force: :cascade do |t|
+  create_table "products", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["permalink"], name: "index_products_on_permalink"
   end
 
-  create_table "qualifications", charset: "utf8mb4", force: :cascade do |t|
+  create_table "qualifications", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name", null: false
@@ -227,14 +227,14 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.decimal "max_points_by_team", precision: 10, scale: 2, default: "0.0", null: false
   end
 
-  create_table "references", charset: "utf8mb4", force: :cascade do |t|
+  create_table "references", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name", null: false
     t.string "unique_name", null: false
   end
 
-  create_table "tickets", charset: "utf8mb4", force: :cascade do |t|
+  create_table "tickets", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", null: false
@@ -247,7 +247,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
-  create_table "transactions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "transactions", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["withdraw_id"], name: "index_transactions_on_withdraw_id"
   end
 
-  create_table "user_bank_accounts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_bank_accounts", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_bank_accounts_on_user_id"
   end
 
-  create_table "user_graduations", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_graduations", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -295,7 +295,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_graduations_on_user_id"
   end
 
-  create_table "user_networks", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_networks", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "lft", null: false
@@ -310,7 +310,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_networks_on_user_id"
   end
 
-  create_table "user_point_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_point_records", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_point_records_on_user_id"
   end
 
-  create_table "user_points", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_points", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -339,7 +339,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_points_on_user_id"
   end
 
-  create_table "user_qualifications", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_qualifications", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -348,7 +348,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_user_qualifications_on_user_id"
   end
 
-  create_table "user_spill_queues", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_spill_queues", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "spilled", default: false, null: false
@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_sponsor_id"], name: "index_user_spill_queues_on_user_sponsor_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false
@@ -423,7 +423,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "wallets", charset: "utf8mb4", force: :cascade do |t|
+  create_table "wallets", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "balance", precision: 10, scale: 2
@@ -433,7 +433,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_045254) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
-  create_table "withdraws", charset: "utf8mb4", force: :cascade do |t|
+  create_table "withdraws", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false

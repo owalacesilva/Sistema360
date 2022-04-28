@@ -100,7 +100,7 @@ group :test do
   gem "rails-controller-testing"
 end
 
-group :assets, :production do
+group :assets, :production, :staging do
   gem 'therubyracer'
   # Use SCSS for stylesheets
   gem 'sass-rails', '>= 6'

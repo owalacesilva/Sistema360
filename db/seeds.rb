@@ -141,7 +141,7 @@ def create_withdraw(user)
   end
 end
 
-if Rails.env.development?
+unless Rails.env.production? || Rails.env.test?
   # Root member
   root_attr = FactoryBot.attributes_for(:user, :root, :actived, :verified)
   root = User.new(root_attr)

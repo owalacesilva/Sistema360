@@ -1,0 +1,38 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  flags:
+    - -COMPRESS
+    - FOUND_ROWS
+    - MULTI_STATEMENTS
+  secure_auth: false
+
+development:
+  <<: *default
+  timeout: 5000
+  host: db
+  port: 3306
+  database: sys_dev
+  username: root
+  password: 123456
+
+test:
+  <<: *default
+  timeout: 5000
+  host: db
+  port: 3306
+  database: sys_test
+  username: root
+  password: 123456
+
+staging:
+  <<: *default
+  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] %>
+
+production:
+  <<: *default
+  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] %>

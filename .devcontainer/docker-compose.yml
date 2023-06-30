@@ -25,6 +25,7 @@ services:
       - ~/.ssh:/home/vscode/.ssh
     environment:
       - RAILS_ENV=development
+      - RAILS_MAX_THREADS=5
       - WEB_CONCURRENCY=1
       - HISTFILE=./log/.bash_history
       - EDITOR=vi
@@ -36,16 +37,7 @@ services:
     <<: *backend
     command: /bin/bash
     ports:
-      - '3001:3000'
-      - '3003:3002'
-      - '7433:7433'
-
-  rails:
-    <<: *backend
-    command: bundle exec rails server -b 0.0.0.0
-    ports:
-      - '3005:3000'
-      - '9876:9876'
+      - '3000:3000'
 
   phpmyadmin:
     image: phpmyadmin
@@ -53,11 +45,11 @@ services:
     ports:
       - 8080:80
     links: 
-      - db
+      - mariadb
     depends_on: 
-      - db
+      - mariadb
 
-  db:
+  mariadb:
     image: mariadb:10.3
     restart: always
     environment: 

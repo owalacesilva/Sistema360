@@ -1,5 +1,4 @@
 # Define required macros here
-
 dbrenew:
 	rake db:drop && rake db:create && rake db:migrate && rake db:seed
 
@@ -17,3 +16,9 @@ up:
 
 dbsetup:
 	rake db:setup && rake db:migrate && rake db:seed
+
+guard:
+	bundle exec guard
+
+test:
+	bundle exec rspec

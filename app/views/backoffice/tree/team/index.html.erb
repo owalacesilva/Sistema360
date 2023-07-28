@@ -58,6 +58,15 @@
             <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
           </div>
         </div>
+        <%= page_entries_info @users, entry_name: 'item' %>
+        <div class="row">
+          <div class="col-lg-6">
+            <%= link_to_previous_page @users, 'Previous Page' %>
+          </div>
+          <div class="col-lg-6">
+            <%= link_to_next_page @users, 'Next Page' %>
+          </div>
+        </div>
         <table class="table table-striped">
           <thead>
             <tr>

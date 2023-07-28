@@ -19,7 +19,7 @@ pt-BR:
   errors:
     messages:
       not_saved: "Atenção! %{count} erros encontrados"
-  activerecord: 
+  activerecord:
     models:
       user: Usuário
       user_bank_accounts: Conta Bancária
@@ -53,6 +53,13 @@ pt-BR:
         password_confirmation: Digite novamente a senha
         security_password: Nova senha de segurança
         security_password_confirmation: Confirme a nova senha de segurança
+      user/status:
+        actived: Ativo
+        pending: Pendente
+        expired: Expirado
+        canceled: Cancelado
+        refused: Recusado
+        paid: Pago
       order:
         status:
           created: Criado

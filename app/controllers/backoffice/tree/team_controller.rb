@@ -1,9 +1,8 @@
 class Backoffice::Tree::TeamController < Backoffice::BackofficeController
 
   def index
-    @users = current_user
-      .sponsored
-      .order(created_at: :desc)
-      .page(params[:page])
+    @filters = filter_params('team')
+    query = TeamQuery.call(relation: current_user, filters: @filters)
+    @users = query.order(created_at: :desc).page(params[:page])
   end
 end

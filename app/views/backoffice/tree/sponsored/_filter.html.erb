@@ -1,0 +1,38 @@
+<div class="">
+  <div class="card mb-3">
+    <h6 class="card-header">
+      <%= fa_icon "filter fw" %><span>Filtro</span>
+    </h6>
+    <div class="card-body">
+      <%= form_tag backoffice_tree_sponsored_index_path, method: :get do -%>
+        <div class="row g-3">
+          <div class="col-lg-3">
+            <label for="username" class="form-label">Login</label>
+            <%= text_field_tag :username, @filters.username, class: 'form-control' %>
+          </div>
+          <div class="col-lg-3">
+            <label for="name" class="form-label">Nome</label>
+            <%= text_field_tag :name, @filters.name, class: 'form-control' %>
+          </div>
+          <div class="col-lg-3">
+            <label for="status" class="form-label">Situação</label>
+            <% statuses = human_attribute_enum('user', User.statuses, 'status') %>
+            <%= select_tag :status, options_for_select(statuses, @filters.status), { prompt: "-- Selecione um status --", class: 'form-control chosen-select' } %>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col">
+            <div class="row g-1 justify-content-end">
+              <div class="col-auto">
+                <%= submit_tag "Filtrar", class: "btn btn-success", data: { disable_with: 'Filtrando...' } %>
+              </div>
+              <div class="col-auto">
+                <%= link_to 'Limpar filtro', backoffice_tree_sponsored_index_path(clear_filter: true), class: 'btn btn-light btn-danger-hover', data: { disable_with: 'Limpando...' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%- end %>
+    </div>
+  </div>
+</div>

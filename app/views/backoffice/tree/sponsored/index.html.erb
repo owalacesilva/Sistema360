@@ -4,28 +4,7 @@
       <%= fa_icon "calendar fw" %>
       <span>Meus Diretos</span>
     </div>
-    <div class="card mb-3">
-      <h6 class="card-header">
-        <%= fa_icon "filter fw" %><span>Filtro</span>
-      </h6>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <form>
-              <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Procurar</label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" cname="name" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-6 text-end">
-            <%= link_to "Exportar CSV", "#", class: "btn btn-primary" %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'filter' %>
     <div class="card mb-3">
       <div class="card-body">
         <table class="table table-striped">

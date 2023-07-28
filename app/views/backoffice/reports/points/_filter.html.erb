@@ -1,0 +1,39 @@
+<div class="">
+  <div class="card mb-3">
+    <h6 class="card-header">
+      <%= fa_icon "filter fw" %><span>Filtro</span>
+    </h6>
+    <div class="card-body">
+      <%= form_tag backoffice_reports_points_path, method: :get do -%>
+        <div class="row g-3">
+          <div class="col-lg-3">
+            <label for="name" class="form-label">Nome do usuário</label>
+            <%= text_field_tag :name, @filters.name, class: 'form-control' %>
+          </div>
+          <div class="col-lg-3">
+            <label for="registered_in" class="form-label">Registrado em</label>
+            <% periods = { 'Últimos 30 dias': '2022-07-23', 'Últimos 7 dias': '2022-08-16', 'Ontem': '2022-08-22', 'Hoje': '2022-08-23' } %>
+            <%= select_tag :registered_in, options_for_select(periods, @filters.registered_in), { prompt: "-- Selecione um Periodo --", class: 'form-control chosen-select' } %>
+          </div>
+          <div class="col-lg-3">
+            <label for="status" class="form-label">Tipo de Ponto</label>
+            <% options = { 'Adesão': :activation, 'Recompra': :reactivation } %>
+            <%= select_tag :reference, options_for_select(options, @filters.reference), { prompt: "-- Selecione um ponto --", class: 'form-control chosen-select' } %>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col">
+            <div class="row g-1 justify-content-end">
+              <div class="col-auto">
+                <%= submit_tag "Filtrar", class: "btn btn-success", data: { disable_with: 'Filtrando...' } %>
+              </div>
+              <div class="col-auto">
+                <%= link_to 'Limpar filtro', backoffice_reports_points_path(clear_filter: true), class: 'btn btn-light btn-danger-hover', data: { disable_with: 'Limpando...' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%- end %>
+    </div>
+  </div>
+</div>

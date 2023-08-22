@@ -1,0 +1,10 @@
+- Página inicial
+- Página de produtos por categoria
+- Meus pedidos
+- Detalhes do pedido
+- Meus cupons
+- Meus dados
+  - Dados principais
+  - Meus endereços
+  - Dados Bancários
+  - Senha

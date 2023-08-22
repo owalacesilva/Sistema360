@@ -1,0 +1,2 @@
+module Auctions::CheckoutHelper
+end

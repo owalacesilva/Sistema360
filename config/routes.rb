@@ -57,4 +57,10 @@ Rails.application.routes.draw do
       get "checkout", controller: :checkout, action: :index, as: :checkout
     end
   end
+
+  namespace :auctions do
+    get '', controller: :home, action: :index
+    resources :products, only: [:index, :show]
+    post 'checkout', controller: :checkout, action: :index, as: :checkout
+  end
 end

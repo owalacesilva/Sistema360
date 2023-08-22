@@ -1,0 +1,17 @@
+- Página inicial
+  [ok] Criar estrutura html da página
+  - Aplicar style css na página
+  - Criar teste unitário para o endpoint
+- Página de sorteios
+  - Criar estrutura html da página
+  - Aplicar style css na página
+  - Criar teste unitário para o endpoint
+- Detalhes do sorteio
+  - Criar estrutura html da página
+  - Aplicar style css na página
+- Página de Checkout
+  - Criar estrutura html da página
+  - Aplicar style css na página
+- Página Pagamento da Compra
+  - Criar estrutura html da página
+  - Aplicar style css na página

@@ -1,0 +1,120 @@
+<section style="background-color: #eee;">
+  <div class="container py-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row d-flex justify-content-center pb-5">
+          <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
+            <div class="py-4 d-flex flex-row">
+              <h5><b>Checkout</b> |</h5>
+              <span class="ps-2">via PIX</span>
+            </div>
+            <div>
+              <div class="mb-2">
+                <p>
+                  <div style="width: 25px;height: 25px;background-color: green;display: inline-block;position: relative;color: white;font-weight: bold;text-align: center;border-radius: 20%;">1</div> <span>Copie o código PIX abaixo<span>
+                </p>
+                <div class="input-group input-group-sm">
+                  <%= text_field_tag :qr_code_payload, 0, class: 'form-control', value: @pix.payload, readonly: true %>
+                  <button class="btn btn-success" type="button" id="button-addon2">Copiar</button>
+                </div>
+              </div>
+              <div class="mb-2">
+                <p>
+                  <div style="width: 25px;height: 25px;background-color: green;display: inline-block;position: relative;color: white;font-weight: bold;text-align: center;border-radius: 20%;">2</div> <span>Abra o app do seu banco e escolha a opção PIX, como se fosse fazer uma transferência<span>
+                </p>
+              </div>
+              <div class="mb-2">
+                <p>
+                  <div style="width: 25px;height: 25px;background-color: green;display: inline-block;position: relative;color: white;font-weight: bold;text-align: center;border-radius: 20%;">3</div> <span>Selecione a opção PIX cópia e cola, cole a chave copiada e confirme o pagamento.<span>
+                </p>
+              </div>
+              <div class="alert alert-warning" role="alert">
+                <strong>Atenção:</strong>
+                Esse pagamento só pode ser realizado dentro do tempo, após este período, caso o pagamento não for confirmado os números voltam a ficar disponíveis.
+              </div>
+              <div class="mb-3 text-center">
+                <input type="button" value="Já realizei o paramento" class="btn btn-success btn-sm" />
+              </div>
+              <div class="text-center">
+                <h5>
+                  <strong>QR CODE</strong>
+                </h5>
+                <div>
+                  <%= image_tag @pix.base64, class: 'img-fluid img-thumbnail rounded', alt: '', style: 'max-width: 300px;' %>
+                </div>
+                <small>Acesse o APP do seu banco e escolha a opção pagar com QR Code. escaneie o código ao lado e confirme o pagamento.</small>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-3">
+                    <%= image_tag 'auction-banner', class: 'img-fluid rounded-start', alt: '' %>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= @product.title -%>
+                      </h5>
+                      <p class="card-text">
+                        This is a wider card with supporting text below as.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded d-flex" style="background-color: #f8f9fa;">
+                <div class="p-2">
+                  <strong>Código da compra</strong>
+                </div>
+                <div class="ms-auto p-2">OAP654875</div>
+              </div>
+              <div class="text-left">
+                <small>
+                  Insurance claims and all necessary dependencies will be submitted to your
+                  insurer for the coverred portion of this order
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 col-xl-4 offset-xl-1">
+            <div class="py-4 d-flex justify-content-end">
+              <h6><a href="#!">Cancelar e voltar ao site</a></h6>
+            </div>
+            <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
+              <div class="p-2 me-3">
+                <h5>
+                  <b>Detalhes do Pedido</b>
+                </h5>
+              </div>
+              <div class="border-top px-2 mx-2"></div>
+              <div class="p-2 d-flex">
+                <div class="col-8">
+                  <strong>Código da compra</strong>
+                </div>
+                <div class="ms-auto">
+                  <b>OAP654875</b>
+                </div>
+              </div>
+              <div class="p-2 d-flex pt-3">
+                <div class="col-8">Quantidade de cotas</div>
+                <div class="ms-auto"><b>10</b></div>
+              </div>
+              <div class="p-2 d-flex">
+                <div class="col-8">Valor por cota</div>
+                <div class="ms-auto"><b>R$ 100,00</b></div>
+              </div>
+              <div class="border-top px-2 mx-2"></div>
+              <div class="p-2 d-flex pt-3">
+                <div class="col-8"><b>Total</b></div>
+                <div class="ms-auto"><b class="text-success">R$ 100,00</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

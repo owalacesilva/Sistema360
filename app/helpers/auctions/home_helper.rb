@@ -1,0 +1,2 @@
+module Auctions::HomeHelper
+end
